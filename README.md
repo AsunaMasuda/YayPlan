@@ -1,39 +1,138 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+# YayPlan
+[YayPlan]() is a easy schedule planner app which you can use when you want to set up a gathering with your friends and families. 
 
-Welcome USER_NAME,
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project.
+## Table of Contents
 
-## Gitpod Reminders
+1. [UX](#ux)
+    - [Goals](#goals)
+        - [Visitor's Goals](#visitors-goals)
+        - [Developer's Goals](#developers-goals)
+    - [User Stories](#user-stories)
+    - [Design Choices](#design-choices)
+    - [Wireframes](#wireframes)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+2. [Features](#features)
+    - [Existing Features](#existing-features)
+        - [to be updated](#song-search-and-result)
+        - [to be updated](#lyrics)
+        - [to be updated](#artist-information)
+    - [Features Left to Implement](#features-left-to-implement)
 
-`python3 -m http.server`
+4. [Technologies Used](#technologies-used)
 
-A blue button should appear to click: *Make Public*,
+5. [Testing](#testing)
+    - [Manual Testing](#manual-testing)
+    - [Bugs](#bugs)
+    - [How User Stories Needs Were Met](#how-user-stories-needs-were-met)
 
-Another blue button should appear to click: *Open Browser*.
+6. [Deployment](#deployment)
+    - [Local Deployment](#local-deployment)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+7. [Credits](#credits)
 
-A blue button should appear to click: *Make Public*,
+# UX
+## Goals
+The goal of this website is 
 
-Another blue button should appear to click: *Open Browser*.
+### Visitor's Goals
+Visitor's goals are:
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the backend lessons.
+[YayPlan]() met this goal by:
+- to be updated
 
-## Updates Since The Instructional Video
+### Developer's Goals
+The developer's Goals were:
+- to be updated
 
-We continually tweak and adjust this template to help give you the best experience. Here are the updates since the original video was made:
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+## User Stories
+As a visitor to [YayPlan]() I'd want to:
+- to be updated
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+## Design Choices
+YayPlan was designed with hassle-free and intuitive use in mind:
+- to be updated
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+## Wireframes
+Wireframes were created with [balsamiq](https://balsamiq.com/).
+- [Original Project Mockup]()
 
---------
+# Features
 
-Happy coding!
+## Existing Features
+### to be updated
+
+
+### to be updated
+
+
+### to be updated
+
+
+## Features Left to Implement
+
+
+# Technologies Used
+1. HTML
+2. CSS
+3. Bootstrap (v4.4.1)
+4. JavaScript (JQuery, JQuery-UI)
+5. Git/GitHub
+6. Gitpod
+
+# Testing
+### Validation Tools
+- HTML: [W3C HTML Validator](https://validator.w3.org/)
+- CSS: [W3C CSS validator](https://jigsaw.w3.org/css-validator/)
+- JavaScript: [JSHint](https://jshint.com/)
+
+### Manual Testing
+I created [a testing matrix]() to make sure the site works as expected in different devices, browsers and screen sizes.
+
+### Bugs
+- to be updated
+
+### How User Stories Needs Were Met
+- to be updated
+
+# Deployment
+To deploy this page to GitHub Pages from my [GitHub repository](https://github.com/AsunaMasuda/Milestoneproject_2), the following steps were taken: 
+1. Log into GitHub. 
+2. From the list of repositories on the screen, select **AsunaMasuda/Milestoneproject_2**.
+3. From the menu items near the top of the page, select **Settings**.
+4. Scroll down to the **GitHub Pages** section.
+5. Under **Source**, click the drop-down menu labelled **None** and select **Master Branch**.
+6. On selecting Master Branch, the page is automatically refreshed, the website is now deployed. 
+7. Scroll back down to the **GitHub Pages** section to retrieve the link to the deployed website.
+
+## Local Deployment
+To clone this project from GitHub:
+1. At the top of this repository, click the green button **Clone or download**.
+2. In the Clone with HTTPs section, copy the clone URL for the repository. 
+3. Open your favourite terminal (cmd, powershell, bash, git bash, etc.)
+4. Change the current working directory to the location where you want the cloned directory to be made.
+5. Type `git clone`, and then paste the URL you copied in Step 2.
+6. Press Enter. Your local clone will be created.
+
+# Credits
+
+## Content
+- All text within this project was written by the developer.
+
+## Media
+### Icons
+- to be updated
+
+### Background Photos
+- to be updated
+
+### API
+- to be updated
+
+## Acknowledgements
+- to be updated
+
+Thanks to:
+My Code Institute Mentor Guido Cecilio Garcia Bernal for his advise throughout the development process.
