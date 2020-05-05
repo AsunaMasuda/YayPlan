@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+
+<header>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 my-auto">
+            <h1>Easy way to schedule in this complicated world.</h1>
+            <h3>Create a shareable schedular link.</h3>
+                    <div class="text-center">
+                    <a href="{{url_for('create_new_plan')}}">
+                        <button type="submit" id="button_create">
+                            Create a new plan!
+                        </button>
+                    </a>
+                    </div>
+        </div>
+        <div class="col-lg-6">
+            <img id="main_image" src="{{url_for('static', filename='main.jpg')}}" alt="main image">
+        </div>
+    </div>
+</div>
+</header>
+
+{% endblock %}

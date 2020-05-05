@@ -125,14 +125,13 @@ To clone this project from GitHub:
 ### Icons
 - to be updated
 
-### Background Photos
-- to be updated
+### Images
+- People vector created by [pikisuperstar - www.freepik.com](https://www.freepik.com/free-photos-vectors/people)
 
 ### API
 - to be updated
 
 ## Acknowledgements
-- to be updated
 
 Thanks to:
 My Code Institute Mentor Guido Cecilio Garcia Bernal for his advise throughout the development process.

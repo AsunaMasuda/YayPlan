@@ -1,0 +1,126 @@
+body {
+    font-family: Open Sans,Helvetica Neue,Noto Serif SC,Arial,Helvetica,"sans-serif"!important;
+    color:#363636;
+}
+
+header {
+    padding: 155px 100px;
+}
+
+.plan_body {
+    padding-top: 155px;
+}
+
+/*---- Nav Bar */
+.navbar {
+    padding: 1rem 1rem!important;
+}
+
+.navbar-brand{
+	font-size: 1.5rem!important;
+	font-weight: 400;
+	padding: .75em 0;
+	letter-spacing: 1px;
+	color: #363636;
+    }
+
+.nav-link {
+	font-size: 1.1rem!important;
+	font-weight: 400;
+	padding: .75em 0;
+	letter-spacing: 1px;
+	color: #363636;
+    }
+
+.navbar-brand:active, .nav-link:active,
+.navbar-brand:hover, .nav-link:hover {
+	color: #363636;
+}
+
+
+/*---- Footer */
+footer {
+    position: absolute;
+	padding: 15px 0;
+	text-align: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color:#363636!important;
+}
+
+/*---- Main Page */
+#mail_submit {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#button_create {
+    margin-top: 20px;
+    border-width: 1px;
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: calc(0.5em - 1px);
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 4px;
+    font-size: 1.10rem;
+    background-color: #bb7cfe;
+    border-color: transparent;
+    color: #fff;
+}
+
+
+#input_mail {
+    box-shadow: inset 0 0.0625em 0.125em rgba(10,10,10,.05);
+    max-width: 100%;
+    width: 100%;
+    -webkit-appearance: none;
+    align-items: center;
+    border: 1px solid transparent;
+    display: inline-flex;
+    height: 2.5em;
+    justify-content: flex-start;
+    line-height: 1.5;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: calc(0.75em - 1px);
+    padding-right: calc(0.75em - 1px);
+    padding-top: calc(0.5em - 1px);
+    position: relative;
+    vertical-align: top;
+    background-color: #fff;
+    border-color: #dbdbdb;
+    border-radius: 4px;
+    color: #363636;
+    font-size: 1.10rem;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#button_mail {
+    border-width: 1px;
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: calc(0.5em - 1px);
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 4px;
+    font-size: 1.10rem;
+    background-color: #bb7cfe;
+    border-color: transparent;
+    color: #fff;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+#main_image {
+    height: auto;
+    max-width: 90%;
+}
