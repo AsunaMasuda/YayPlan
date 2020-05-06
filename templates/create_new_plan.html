@@ -1,34 +1,76 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="plan_body">
-<div class="container">
-<div class="wrap-contact2">
-<form class="contact2-form validate-form">
-<span class="contact2-form-title">
-Contact Us
-</span>
-<div class="wrap-input2 validate-input" data-validate="Name is required">
-<input class="input2" type="text" name="name">
-<span class="focus-input2" data-placeholder="NAME"></span>
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <div class="contact-form">
+          <div class="row row-form">
+            <span class="col-sm-4">Event Name</span>
+            <span class="col-sm-8"
+              ><input
+                type="text"
+                class="form-control"
+                id="event_name"
+                name="event_name"
+            /></span>
+          </div>
+          <div class="row row-form">
+            <span class="col-sm-4">Event Description</span>
+            <span class="col-sm-8">
+              <textarea
+                class="form-control"
+                rows="5"
+                id="event_description"
+                name="event_description"
+              ></textarea>
+            </span>
+          </div>
+          <div class="row row-form">
+            <span class="col-sm-4">Availability</span>
+            <span class="col-sm-8"
+              ><input
+                type="text"
+                class="form-control"
+                id="event_availability"
+                name="event_availability"
+            /></span>
+            <div class="col-sm-12">
+              <p class="text-right add_more">+ Add more availabilities</p>
+            </div>
+          </div>
+          <div class="row row-form">
+              <span class="col-sm-4">Places</span>
+              <span class="col-sm-8"
+                ><input
+                  type="text"
+                  class="form-control"
+                  id="event_places"
+                  name="event_places"
+              /></span>
+              <div class="col-sm-12">
+                <p class="text-right add_more">+ Add more places</p>
+              </div>
+           </div>
+            <div class="row row-form">
+              <span class="col-sm-4">Theme</span>
+              <span class="col-sm-8"
+                ><input
+                  type="text"
+                  class="form-control"
+                  id="theme"
+                  name="theme"
+              /></span>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div>
+                <button type="submit" id="button_create">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
 </div>
-<div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-<input class="input2" type="text" name="email">
-<span class="focus-input2" data-placeholder="EMAIL"></span>
-</div>
-<div class="wrap-input2 validate-input" data-validate="Message is required">
-<textarea class="input2" name="message"></textarea>
-<span class="focus-input2" data-placeholder="MESSAGE"></span>
-</div>
-<div class="container-contact2-form-btn">
-<div class="wrap-contact2-form-btn">
-<div class="contact2-form-bgbtn"></div>
-<button class="contact2-form-btn">
-Send Your Message
-</button>
-</div>
-</div>
-</form>
-</div>
-</div>
-</div>
-{% endblock %}
