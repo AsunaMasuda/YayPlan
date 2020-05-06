@@ -56,25 +56,6 @@ footer {
     justify-content: flex-start;
 }
 
-#button_create {
-    margin-top: 20px;
-    border-width: 1px;
-    cursor: pointer;
-    justify-content: center;
-    padding-bottom: calc(0.5em - 1px);
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: calc(0.5em - 1px);
-    text-align: center;
-    white-space: nowrap;
-    border-radius: 4px;
-    font-size: 1.10rem;
-    background-color: #bb7cfe;
-    border-color: transparent;
-    color: #fff;
-}
-
-
 #input_mail {
     box-shadow: inset 0 0.0625em 0.125em rgba(10,10,10,.05);
     max-width: 100%;
@@ -123,4 +104,75 @@ footer {
 #main_image {
     height: auto;
     max-width: 90%;
+}
+
+
+
+/*-- create new plan -----------------------------------*/
+body{
+	background-color: #25274d;
+}
+
+.contact{
+	padding: 4%;
+	height: 400px;
+}
+
+.col-md-3{
+	background: #ff9b00;
+	padding: 4%;
+	border-top-left-radius: 0.5rem;
+	border-bottom-left-radius: 0.5rem;
+}
+
+.contact-info{
+	margin-top:10%;
+}
+
+.contact-info img{
+	margin-bottom: 15%;
+}
+
+.contact-info h2{
+	margin-bottom: 10%;
+}
+
+.contact-form {
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+
+.row-form {
+    margin-bottom: 1.5rem;
+}
+
+span {
+      display: inline-block;
+}
+
+.add_more {
+    font-size: 0.85rem;
+    color: #bb7cfe;
+}
+
+.form-control {
+    border-radius: .50rem!important;
+}
+
+#button_create {
+    margin-top: 20px;
+    border-width: 1px;
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: calc(0.5em - 1px);
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 4px;
+    font-size: 1.10rem;
+    background-color: #bb7cfe;
+    border-color: transparent;
+    color: #fff;
 }
