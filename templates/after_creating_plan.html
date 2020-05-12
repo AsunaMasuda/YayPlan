@@ -1,5 +1,18 @@
 {% extends 'base.html' %} {% block content %}
-
-
-
+<div class="plan_body">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 my-auto">
+        <h1 class="text-center">Yay, Your Plan is created!</h1>
+        <div class="text-center">
+          <a href="{{url_for('start')}}">
+            <button id="button_see_plan">
+              See Your Plan
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
