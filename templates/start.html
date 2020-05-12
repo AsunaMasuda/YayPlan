@@ -1,24 +1,40 @@
 {% extends 'base.html' %} {% block content %}
 
 <header>
-<div class="container">
+  <div class="container">
     <div class="row">
-        <div class="col-lg-6 my-auto">
-            <h1>Easy way to schedule in this complicated world.</h1>
-            <h3>Create a shareable schedular link.</h3>
-                    <div class="text-center">
-                    <a href="{{url_for('create_new_plan')}}">
-                        <button type="submit" id="button_create">
-                            Create a new plan!
-                        </button>
-                    </a>
-                    </div>
+      <div class="col-lg-6 my-auto">
+        <h1>Easy way to schedule in this complicated world.</h1>
+        <h3>Create a shareable schedular link.</h3>
+        <div class="text-center">
+          <form action="{{url_for('insert_new_plan')}}" , method="POST">
+            <div id="name_submit">
+              <span>
+                <input
+                  id="input_name"
+                  type="text"
+                  name="organizer_name"
+                  placeholder="Type your name"
+                />
+              </span>
+              <span>
+                <button type="submit" id="button_submit">
+                  Get started!
+                </button>
+              </span>
+            </div>
+          </form>
         </div>
-        <div class="col-lg-6">
-            <img id="main_image" src="{{url_for('static', filename='main.jpg')}}" alt="main image">
-        </div>
+      </div>
+      <div class="col-lg-6">
+        <img
+          id="main_image"
+          src="{{url_for('static', filename='main.jpg')}}"
+          alt="main image"
+        />
+      </div>
     </div>
-</div>
+  </div>
 </header>
 
 {% endblock %}
