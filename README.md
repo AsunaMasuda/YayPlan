@@ -131,6 +131,9 @@ To clone this project from GitHub:
 ### API
 - to be updated
 
+### JavaScript
+- [flatpickr - javascript datetime picker](https://github.com/flatpickr/flatpickr)
+
 ## Acknowledgements
 
 Thanks to:
