@@ -1,3 +1,10 @@
+$(document).ready(function(){
+    
+// Add more places 
+/**
+ * This function adds more options for places
+ * @constructor
+ */
 $("#add_places").on("click", function () {
   $("#extra_places").append(
     `<input type="text"
@@ -6,13 +13,11 @@ $("#add_places").on("click", function () {
 )
 });
 
-const fpConf = {
-  enableTime: true,
-  dateFormat: "Y-m-d Kh:i",
-};
-
-flatpickr(".avail_picker", fpConf);
- 
+// Add more date & time
+/**
+ * This function adds more options for date and time
+ * @constructor
+ */
 $("#add_avail").on("click", function () {
 $("#taskEmpty").append(`<input
                   type="text"
@@ -20,3 +25,17 @@ $("#taskEmpty").append(`<input
                   name="event_availability` + (Number($('#event_availability').length) + 1) + `"
                 />`).find(".avail_picker").flatpickr(fpConf);
 });
+
+// Add flatpickr 
+/**
+ * This function enables flatpickr
+ * @constructor
+ */
+const fpConf = {
+  enableTime: true,
+  dateFormat: "Y-m-d Kh:i",
+};
+
+flatpickr(".avail_picker", fpConf);
+
+})
