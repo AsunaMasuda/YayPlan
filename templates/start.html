@@ -8,18 +8,35 @@
         <h3>Create a shareable schedular link.</h3>
         <div class="text-center">
           <form action="{{url_for('insert_new_plan')}}" , method="POST">
-            <div id="name_submit">
+            <div class="submit_start">
               <span>
                 <input
-                  id="input_name"
+                  class="input_start"
                   type="text"
                   name="organizer_name"
                   placeholder="Type your name"
                 />
               </span>
               <span>
-                <button type="submit" id="button_submit">
-                  Get started!
+                <button type="submit" class="button_submit">
+                  Get started
+                </button>
+              </span>
+            </div>
+          </form>
+          <form action="{{url_for('restore_plan')}}" , method="POST">
+            <div class="submit_start">
+              <span>
+                <input
+                  class="input_start"
+                  type="text"
+                  name="object_id"
+                  placeholder="Type your unique code"
+                />
+              </span>
+              <span>
+                <button type="submit" class="button_submit">
+                  Add your schedule
                 </button>
               </span>
             </div>
@@ -27,11 +44,11 @@
         </div>
       </div>
       <div class="col-lg-6">
-        <img
-          id="main_image"
-          src="{{url_for('static', filename='main.jpg')}}"
-          alt="main image"
-        />
+      <img
+        id="main_image"
+        src="{{url_for('static', filename='main.jpg')}}"
+        alt="main image"
+      />
       </div>
     </div>
   </div>
