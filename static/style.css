@@ -49,13 +49,13 @@ footer {
 }
 
 /*---- Main Page */
-#name_submit {
+.submit_start {
     margin-top: 30px;
     display: flex;
     justify-content: flex-start;
 }
 
-#input_name {
+.input_start {
     box-shadow: inset 0 0.0625em 0.125em rgba(10,10,10,.05);
     max-width: 100%;
     width: 100%;
@@ -81,7 +81,7 @@ footer {
     border-top-right-radius: 0;
 }
 
-#button_submit {
+.button_submit {
     border-width: 1px;
     cursor: pointer;
     justify-content: center;
@@ -166,7 +166,7 @@ span {
     background-color: #fff!important;
 }
 
-#button_create, #button_see_plan {
+#button_create, #button_see_plan, #button_update {
     margin-top: 20px;
     border-width: 1px;
     cursor: pointer;
@@ -182,4 +182,38 @@ span {
     background-color: #bb7cfe;
     border-color: transparent;
     color: #fff;
+}
+
+
+/*-- update_plan_participants -----------------------------------*/
+.event_details {
+    margin-bottom: 2.5rem;
+}
+
+.readonly {
+    border: 0;
+}
+
+.readonly:focus { 
+    outline:0;
+}
+
+#event_name {
+    font-size: 2rem;
+    margin-bottom: 1.1rem;
+}
+
+#event_description {
+    font-size: 1.4rem;
+    margin-bottom: 1.3rem
+}
+
+#organizer_name {
+    font-size: 1.2rem;
+    margin-bottom: 1.1rem;
+}
+
+#event_place1 {
+    font-size: 1.2rem;
+    margin-bottom: 1.1rem;
 }
