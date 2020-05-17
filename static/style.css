@@ -13,6 +13,7 @@ header {
 
 /*---- Nav Bar */
 .navbar {
+    background-color: white;
     padding: 1rem 1rem!important;
 }
 
@@ -152,14 +153,32 @@ span {
 .add_more {
     font-size: 0.85rem;
     color: #bb7cfe;
+    margin-top: 0.2rem;
 }
 
-#add_avail:hover,
-#add_places:hover {
+.add_more:hover {
     color: #b671ff;
     cursor: pointer;
 }
 
+.remove_place_button,
+.remove_avail_button {
+    border-width: 1px;
+    cursor: pointer;
+    justify-content: center;
+    margin: auto;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    padding-top: calc(0.5em - 1px);
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    background-color: #bb7cfe;
+    border-color: transparent;
+    color: #fff;
+}
 
 .form-control {
     border-radius: .50rem!important;
