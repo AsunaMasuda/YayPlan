@@ -209,6 +209,29 @@ span {
     margin-bottom: 2.5rem;
 }
 
+.change_line {
+  white-space: pre-wrap;
+}
+
+.participant_schedule_button, .participant_add, .participant_remove {
+    width: auto;
+    border-width: 1px;
+    cursor: pointer;
+    justify-content: center;
+    margin: auto;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    padding-top: calc(0.5em - 1px);
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    background-color: #bb7cfe;
+    border-color: transparent;
+    color: #fff;
+}
+
 .readonly {
     border: 0;
 }
