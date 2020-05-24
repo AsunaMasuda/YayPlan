@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% block content %}
+<div class="plan_body">
+  <div class="container">
+    <div class="event_details">
+      <h1>{{ the_plan.event_name }}</h1>
+      <h3>{{ the_plan.event_description }}</h3>
+      <h4>{{ the_plan.organizer_name }}</h4>
+      <h5>{{ the_plan.event_place1 }}</h5>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-12 container">
+        <form
+          action="{{ url_for('update_plan_complete', plan_id = plan_id) }}"
+          method="POST"
+        >
+          <table class="table table-borderless">
+            <tbody class="element_participant">
+              <tr class="participant_count" id="participant_0"></tr>
+              <tr class="element_avail_num">
+                <th scope="col">Name</th>
+                {% for avail in range_availability %}
+                <th scope="col" class="avail">
+                  {{ the_plan.availabilities[avail] }}
+                </th>
+                {% endfor %}
+                <th scope="col">Note</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+
+              {% for num_participant in range_participant %}
+              <tr class="participant_count" id="participant_{{num_participant}}">
+              <td>{{ the_plan.participants[num_participant].name }}</td>
+
+              {% for num_availability in range_availability %}
+              <td>
+              {{ the_plan.participants[num_participant].availabilities[num_availability] }}
+              </td>
+              {% endfor %}
+              <td>
+
+              {{ the_plan.participants[num_participant].participant_note }}
+              </td>
+
+              <td>
+              <div class="participant_schedule_button">Edit</div>
+              </td>
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+    <p class="participant_add">Add Another Participant</p>
+  </div>
+</div>
+{% endblock %}
