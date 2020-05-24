@@ -92,27 +92,27 @@ $(document).ready(function () {
    */
    $(".participant_add").on("click", function () {
 
+    // Finding total number of participants added already
+    let lastid = $(".participant_count:last").attr("id");
+    console.log(lastid)
+    let split_id = lastid.split("_");
+    let next_index = Number(split_id[1]) + 1;
+
+
+      // Adding new div container after last occurance of element class
+      $(".participant_count:last")
+        .after(`<tr id="participant_` + next_index + `" class="participant_count"></tr>`)
+
     // Finding total number of availability in the data base
     let element_avail_num = document.getElementsByClassName("avail").length;
     var html_isert_td_all = "";
     for (let i=1; i <= element_avail_num; i++) {
-        html_isert_td = '<td><select name="availability_'+ i.toString() +'"><option value="Available">Available</option><option value="Not Available">Not Available</option><option value="Maybe">Maybe</option></select></td>';
+        html_isert_td = '<td><select name="participant_' + next_index + '_availability_'+ i.toString() +'"><option value="Available">Available</option><option value="Not Available">Not Available</option><option value="Maybe">Maybe</option></select></td>';
         html_isert_td_all += html_isert_td;
     }
-    console.log(html_isert_td_all)
 
-    // Finding total number of participants added already
-    let total_participant_num = document.getElementsByClassName("participant_count").length
-    let next_index = total_participant_num + 1;
+       $("#participant_" + next_index).append(`<td><input type="text" name="participant_` + next_index + `"/></td>` + html_isert_td_all + `<td><textarea class="form-control" rows="1" name="participant_note"></textarea></td><td><button class="participant_schedule_button">Submit</button></td><td><button id ="removeparticipant_`+ next_index +`" class="participant_remove">Remove</button></td>`);
 
-    let max = 10;
-    if (total_participant_num < max) {
-      // Adding new div container after last occurance of element class
-      $(".participant_count:last")
-        .after(`<tr id="participant_` + next_index + `" class="participant_count"></tr>`)
-        
-       $("#participant_" + next_index).append(`<td><input type="text" name="participant_"` + next_index + `/></td>` + html_isert_td_all + `<td><textarea class="form-control" rows="1" name="participant_note"></textarea></td><td><button class="participant_schedule_button">Submit</button></td><td><button id ="removeparticipant_`+ next_index +`" class="participant_remove">Remove</button></td>`);
-    }
   });
 
 
