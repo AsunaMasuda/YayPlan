@@ -2,59 +2,72 @@
 <div class="plan_body">
   <div class="container">
     <div class="event_details">
-      <h1>{{ the_plan.event_name }}</h1>
-      <h3>{{ the_plan.event_description }}</h3>
-      <h4>{{ the_plan.organizer_name }}</h4>
-      <h5>{{ the_plan.event_place1 }}</h5>
+      <h3 class="event_detail_text"><i class="fas fa-chess-queen icon_creat_plan"></i>&nbsp;&nbsp;{{ the_plan.event_name }}</h3>
+      <h4 class="event_detail_text"><i class="fas fa-info-circle icon_creat_plan"></i>&nbsp;&nbsp;{{ the_plan.event_description }}</h4>
+      <h4 class="event_detail_text"><i class="fas fa-user-alt icon_creat_plan"></i>&nbsp;&nbsp;Planned by {{ the_plan.organizer_name }}</h4>
+      <h4 class="event_detail_text"><i class="fas fa-map-marker-alt icon_creat_plan"></i>&nbsp;&nbsp;{{ the_plan.event_place }}</h4>
     </div>
-    
+
+    <form
+      action="{{ url_for('update_plan_complete', plan_id = plan_id) }}"
+      method="POST"
+      id="form1"
+    ></form>
+    <form
+      action="{{ url_for('edit_yourplan', plan_id = plan_id) }}"
+      method="POST"
+      id="form2"
+    ></form>
+    <form
+      action="{{ url_for('delete_participant', plan_id = plan_id) }}"
+      method="POST"
+      id="form3"
+    ></form>
+
     <div class="row">
       <div class="col-sm-12 container">
-        <form
-          action="{{ url_for('update_plan_complete', plan_id = plan_id) }}"
-          method="POST"
-        >
-          <table class="table table-borderless">
-            <tbody class="element_participant">
-              <tr class="participant_count" id="participant_0"></tr>
-              <tr class="element_avail_num">
-                <th scope="col">Name</th>
-                {% for avail in range_availability %}
-                <th scope="col" class="avail">
-                  {{ the_plan.availabilities[avail] }}
-                </th>
-                {% endfor %}
-                <th scope="col">Note</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-              </tr>
-
-              {% for num_participant in range_participant %}
-              <tr class="participant_count" id="participant_{{num_participant}}">
-              <td>{{ the_plan.participants[num_participant].name }}</td>
+        <table class="table text-center">
+          <tbody class="element_participant">
+            <tr class="element_avail_num">
+              <th scope="col">Name</th>
+              {% for avail in range_availability %}
+              <th scope="col" class="avail">{{ the_plan.availabilities[avail] }}</th>
+              {% endfor %}
+              <th scope="col">Note</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+            
+            <tr class="participant_count" id="participant_0"></tr>
+            {% for num_participant in range_participant %}
+            <tr class="participant_count border_bottom" id="participant_{{num_participant}}">
+              <td class="participant_name vertical-align-middle">{{ the_plan.participants[num_participant].name }}</td>
 
               {% for num_availability in range_availability %}
-              <td>
-              {{ the_plan.participants[num_participant].availabilities[num_availability] }}
+              <td class="vertical-align-middle">
+                {{
+                the_plan.participants[num_participant].availabilities[num_availability]
+                }}
               </td>
               {% endfor %}
-              <td>
-
-              {{ the_plan.participants[num_participant].participant_note }}
+              <td class="vertical-align-middle">
+                {{ the_plan.participants[num_participant].participant_note }}
               </td>
 
-              <td>
-              <div class="participant_schedule_button">Edit</div>
+              <td class="vertical-align-middle">
+                <div class="participant_schedule_button button_edit">
+                  Edit
+                </div>
               </td>
-              </tr>
-              {% endfor %}
-
-            </tbody>
-          </table>
-        </form>
+              <td>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
+      <button class="participant_add">Add Another Participant</button>
     </div>
-    <p class="participant_add">Add Another Participant</p>
   </div>
 </div>
 {% endblock %}
