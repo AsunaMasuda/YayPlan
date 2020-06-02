@@ -18,6 +18,11 @@ def start():
     return render_template('start.html')
 
 
+@app.route('/restore_plan')
+def restore_plan():
+    return render_template('restore_plan.html')
+
+
 @app.route('/insert_new_plan', methods=["POST"])
 def insert_new_plan():
     plans = mongo.db.plans
@@ -25,19 +30,9 @@ def insert_new_plan():
     organizer_name = request.form["organizer_name"]
     look_for_id = plans.find(
         {"organizer_name": organizer_name}).sort("_id", -1)[0]
-    return render_template('create_new_plan.html', organizer_name=organizer_name, look_for_id=look_for_id)
-
-
-@app.route('/restore_plan',  methods=["POST"])
-def restore_plan():
-    plan_id = request.form["object_id"]
-    the_plan = mongo.db.plans.find_one({"_id": ObjectId(plan_id)})
-    range_availability = range(0, len(the_plan['availabilities']))
-    if the_plan['participants'] == 0:
-        range_participant = 0
-    else:
-        range_participant = range(0, len(the_plan['participants']))
-    return render_template('update_plan_participants.html', plan_id=plan_id, the_plan=the_plan, range_participant=range_participant, range_availability=range_availability)
+    return render_template('create_new_plan.html',
+                           organizer_name=organizer_name,
+                           look_for_id=look_for_id)
 
 
 @app.route('/update_details/<plan_id>', methods=["POST"])
@@ -69,7 +64,10 @@ def update_plan_participants(plan_id):
         range_participant = 0
     else:
         range_participant = range(0, len(the_plan['participants']))
-    return render_template('update_plan_participants.html', plan_id=plan_id, the_plan=the_plan, range_participant=range_participant, range_availability=range_availability)
+    return render_template('update_plan_participants.html',
+                           plan_id=plan_id, the_plan=the_plan,
+                           range_participant=range_participant,
+                           range_availability=range_availability)
 
 
 @app.route('/update_plan_complete/<plan_id>', methods=["POST"])
@@ -95,10 +93,12 @@ def update_plan_complete(plan_id):
                                 "participants": {
                                     'name': name_participant,
                                     'availabilities': dict_avail,
-                                    'participant_note': request.form["participant_note"]
+                                    'participant_note':
+                                        request.form["participant_note"]
                                 }}
                              })
-        except: continue
+        except:
+            continue
 
     return render_template('after_updating_plan.html', plan_id=plan_id)
 
@@ -111,7 +111,10 @@ def check_plan_participants(plan_id):
         range_participant = 0
     else:
         range_participant = range(0, len(the_plan['participants']))
-    return render_template('update_plan_participants.html', plan_id=plan_id, the_plan=the_plan, range_participant=range_participant, range_availability=range_availability)
+    return render_template('update_plan_participants.html',
+                           plan_id=plan_id, the_plan=the_plan,
+                           range_participant=range_participant,
+                           range_availability=range_availability)
 
 
 @app.route('/edit_yourplan/<plan_id>', methods=["POST"])
@@ -119,28 +122,37 @@ def edit_yourplan(plan_id):
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
     i = 0
     while i < len(the_plan['participants']):
-        if request.form['edit_name'] ==  the_plan['participants'][i]['name']:
+        if request.form['edit_name'] == the_plan['participants'][i]['name']:
             dict_avail_edit = []
             for n in range(1, 6):
                 each_availability = "availability_" + str(n)
                 try:
                     dict_avail_edit.append(request.form[each_availability])
                 except:
+                    
                     break
             updating_participant_DB = "participants." + str(i)
 
             mongo.db.plans.update(
                 {'_id': ObjectId(plan_id)},
-                    {'$set': {
-                        updating_participant_DB : {
-                            'name': request.form['edit_name'],
-                            'availabilities': dict_avail_edit,
-                            'participant_note': request.form["participant_note"]
-                        }}})
+                {'$set': {
+                    updating_participant_DB: {
+                        'name': request.form['edit_name'],
+                        'availabilities': dict_avail_edit,
+                        'participant_note': request.form["participant_note"]
+                    }}})
             i = i + 1
-        else: 
+        else:
             i = i + 1
             continue
+    return render_template('after_updating_plan.html', plan_id=plan_id)
+
+
+@app.route('/delete_participant/<plan_id>', methods=["POST"])
+def delete_participant(plan_id):
+    mongo.db.plans.update({'_id': ObjectId(plan_id)},
+                          {'$pull': {'participants': {
+                              'name': request.form['edit_name']}}})
     return render_template('after_updating_plan.html', plan_id=plan_id)
 
 
