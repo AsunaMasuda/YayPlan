@@ -1,48 +1,85 @@
 {% extends 'base.html' %} {% block content %}
-<form
-  action="{{ url_for('update_details', organizer_name=organizer_name, plan_id = look_for_id._id) }}"
-  method="POST"
->
-  <div class="plan_body">
-    <div class="container">
-      <div class="row">
-        <div class="col-md">
+<div class="plan_body">
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <h2 class="text-center title_create_new_plan">What's your plan?</h2>
+        <form
+          action="{{ url_for('update_details', organizer_name=organizer_name, plan_id = look_for_id._id) }}"
+          method="POST"
+          class="needs-validation"
+          novalidate
+        >
           <div class="contact-form">
-            <div class="row row-form">
-              <span class="col-sm-4">Organizer's Name</span>
+            <div class="form-row row-form-adjust">
+              <span class="col-sm-4"
+                ><i class="fas fa-user-alt icon_creat_plan"></i> Organizer's
+                Name</span
+              >
               <span class="col-sm-8"
                 ><input
                   type="text"
-                  class="form-control"
+                  class="form-control form-valid"
                   name="organizer_name"
                   value="{{organizer_name}}"
-              /></span>
+                  aria-invalid="false"
+                  required
+                />
+                <p class="invalid-feedback">
+                  Please input organizer's name.
+                </p></span
+              >
             </div>
-            <div class="row row-form">
-              <span class="col-sm-4">Event Name</span>
+            <div class="form-row row-form-adjust">
+              <span class="col-sm-4"
+                ><i class="fas fa-chess-queen icon_creat_plan"></i> Event
+                Name</span
+              >
               <span class="col-sm-8"
-                ><input type="text" class="form-control" name="event_name"
-              /></span>
+                ><input
+                  type="text"
+                  class="form-control form-valid"
+                  name="event_name"
+                  aria-invalid="false"
+                  required
+                />
+                <p class="invalid-feedback">
+                  ´ Please input organizer's name.
+                </p></span
+              >
             </div>
-            <div class="row row-form">
-              <span class="col-sm-4">Event Description</span>
+            <div class="form-row row-form-adjust">
+              <span class="col-sm-4"
+                ><i class="fas fa-info-circle icon_creat_plan"></i> Event
+                Description</span
+              >
               <span class="col-sm-8">
                 <textarea
-                  class="form-control"
+                  class="form-control form-valid"
                   rows="5"
                   name="event_description"
+                  required
                 ></textarea>
+                <p class="invalid-feedback">
+                  Please input an event description.
+                </p>
               </span>
             </div>
-            <div class="row row-form container_avail">
-              <div class="col-sm-4">Date & Time</div>
+            <div class="form-row row-form-adjust container_avail">
+              <div class="col-sm-4">
+                <i class="far fa-calendar-alt icon_creat_plan"></i> Date & Time
+              </div>
               <div class="col-sm-8">
                 <div class="element_avail" id="addavail_1">
-                    <input
-                      type="text"
-                      class="form-control avail_picker"
-                      name="availability_1"
-                    />
+                  <input
+                    type="text"
+                    class="form-control avail_picker form-valid"
+                    name="availability_1"
+                    required
+                  />
+                  <p class="invalid-feedback">
+                    Please input at least one availability.
+                  </p>
                 </div>
               </div>
               <div class="col-sm-12">
@@ -51,15 +88,22 @@
                 </p>
               </div>
             </div>
-            <div class="row row-form container_place">
-              <div class="col-sm-4">Places</div>
+            <div class="form-row row-form-adjust container_place">
+              <div class="col-sm-4">
+                <i class="fas fa-map-marker-alt icon_creat_plan"></i> Places
+              </div>
               <div class="col-sm-8">
                 <div class="element_place" id="addplaces_1">
                   <input
                     type="text"
-                    class="form-control event_place"
+                    class="form-control event_place form-valid"
                     name="event_place"
+                    aria-invalid="false"
+                    required
                   />
+                  <p class="invalid-feedback">
+                    Please input at least one place.
+                  </p>
                 </div>
               </div>
               <div class="col-sm-12">
@@ -68,25 +112,15 @@
                 </p>
               </div>
             </div>
-            <div class="row row-form">
-              <span class="col-sm-4">Theme</span>
-              <span class="col-sm-8"
-                ><input
-                  type="text"
-                  class="form-control"
-                  id="theme"
-                  name="theme"
-              /></span>
+            <div class="row d-flex justify-content-center">
+              <div>
+                <button type="submit" id="button_create">Create</button>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-center">
-      <div>
-        <button type="submit" id="button_create">Create</button>
+        </form>
       </div>
     </div>
   </div>
-</form>
+</div>
 {% endblock %}
