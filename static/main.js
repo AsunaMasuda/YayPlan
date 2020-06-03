@@ -84,35 +84,43 @@ $(document).ready(function () {
    * @constructor
    */
   const fpConf = {
-    enableTime: true,
-    dateFormat: "m-d-Y H:i",
-    allowInput:true
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "Y-m-d",
   };
-  
+
   flatpickr(".avail_picker", fpConf);
 
-  // Validation 
+  // Validation
   /**
    * Validation
    * @constructor
    */
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
+  (function () {
+    "use strict";
+    window.addEventListener(
+      "load",
+      function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName("needs-validation");
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      },
+      false
+    );
+  })();
 
   // Add one more participant
   /**
@@ -136,7 +144,7 @@ $(document).ready(function () {
     let html_isert_td_all = "";
     for (let i = 1; i <= element_avail_num; i++) {
       html_isert_td =
-        `<td><select name="participant_` +
+        `<td><select class="select_avail" name="participant_` +
         next_index +
         `_availability_` +
         i.toString() +
@@ -149,9 +157,9 @@ $(document).ready(function () {
         next_index +
         `" form="form1"/></td>` +
         html_isert_td_all +
-        `<td><textarea class="form-control" rows="1" name="participant_note" form="form1"></textarea></td><td ><input type="submit" class="participant_schedule_button" form="form1" value="Submit"/></td><td><button id ="removeparticipant_` +
+        `<td><textarea class="form-control" rows="1" name="participant_note" form="form1"></textarea></td><td><button id ="removeparticipant_` +
         next_index +
-        `" class="participant_remove">Remove</button></td>`
+        `" class="participant_remove">Remove</button></td><td></td>`
     );
   });
 
@@ -180,7 +188,7 @@ $(document).ready(function () {
     let html_isert_td_all = "";
     for (let i = 1; i <= element_avail_num; i++) {
       html_isert_td =
-        `<td><select form="form2" name="availability_` +
+        `<td><select class="select_avail" form="form2" name="availability_` +
         i.toString() +
         `"><option value="Yes">Yes</option><option value="No">No</option><option value="Maybe">Maybe</option></select></td>`;
       html_isert_td_all += html_isert_td;
@@ -197,6 +205,35 @@ $(document).ready(function () {
 
     $(this).parent().parent().replaceWith(insert_html);
   });
+
+  // Count the number of Yes/No/Maybe
+  /**
+   * This function counts the number of Yes/No/Maybe per availability
+   * @constructor
+   */
+  let element_avail_num = document.getElementsByClassName("avail").length;
+  let element_participant_num = document.getElementsByClassName(
+    "participant_name"
+  ).length;
+
+  for (let i = 0; i < element_avail_num; i++) {
+    let num_yes = 0;
+    let num_no = 0;
+    let num_maybe = 0;
+    let test_variable = ".test_" + i.toString();
+    class_name_availability = "availability_" + i.toString();
+    let valueArray = document.getElementsByClassName(class_name_availability);
+    for (let n = 0; n < element_participant_num; n++) {
+      if (valueArray[n].innerHTML.includes("Yes")) {
+        num_yes = num_yes + 1;
+      } else if (valueArray[n].innerHTML.includes("No")) {
+        num_no = num_no + 1;
+      } else if (valueArray[n].innerHTML.includes("Maybe")) {
+        num_maybe = num_maybe + 1;
+      }
+    }
+    $(test_variable).append(`<div>Yes - `+ num_yes + `</div><div>No - ` + num_no + `</div><div>Maybe - ` + num_maybe + `</div>`)
+  }
 });
 
 // Copy to clipboard
