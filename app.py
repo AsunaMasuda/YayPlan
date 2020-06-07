@@ -165,6 +165,11 @@ def delete_participant(plan_id):
     return render_template('after_updating_plan.html', plan_id=plan_id)
 
 
+@app.route('/restore_plan')
+def restore_plan():
+   return render_template('restore_plan.html')
+   
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
