@@ -7,29 +7,17 @@
         <h1>Easy way to schedule in this complicated world.</h1>
         <h3>Create a shareable schedular link.</h3>
         <div class="text-center">
-          <form action="{{url_for('insert_new_plan')}}" method="POST">
-            <div class="submit_start">
-              <span>
-                <input
-                  class="input_start"
-                  type="text"
-                  name="organizer_name"
-                  placeholder="Type your name"
-                />
-              </span>
-              <span>
-                <button type="submit" class="button_submit">
-                  Get started
-                </button>
-              </span>
-            </div>
-          </form>
+          <a href="{{url_for('check_event_key')}}">
+            <button type="submit" class="button_submit">
+              Get started
+            </button>
+          </a>
         </div>
       </div>
       <div class="col-lg-7">
         <img
           class="main_image"
-          src="{{url_for('static', filename='main_1.jpg')}}"
+          src="{{url_for('static', filename='/img/' + 'main_1.jpg')}}"
           alt="main image"
         />
       </div>
@@ -46,7 +34,7 @@
       <div class="col-lg-6 text-lg-right">
         <img
           class="main_image"
-          src="{{url_for('static', filename='main_2.jpg')}}"
+          src="{{url_for('static', filename='/img/' + 'main_2.jpg')}}"
           alt="main image"
         />
       </div>
@@ -67,7 +55,7 @@
       <div class="col-lg-6 text-lg-left">
         <img
           class="main_image"
-          src="{{url_for('static', filename='main_3.jpg')}}"
+          src="{{url_for('static', filename='/img/' + 'main_3.jpg')}}"
           alt="main image"
         />
       </div>
@@ -76,7 +64,7 @@
       <div class="col-lg-6 text-lg-right">
         <img
           class="main_image"
-          src="{{url_for('static', filename='main_4.jpg')}}"
+          src="{{url_for('static', filename='/img/' + 'main_4.jpg')}}"
           alt="main image"
         />
       </div>
@@ -93,27 +81,18 @@
 <section class="main_last">
   <div class="container">
     <div class="text-center main_last_text">
-      <h2>Get started for your new plan now!</h2>
+      <h2 class="restore_plan_">Get started for your new plan now!</h2>
       <div class="d-flex justify-content-center">
-        <form action="{{url_for('insert_new_plan')}}" method="POST">
-          <div class="submit_start">
-            <span>
-              <input
-                class="input_start"
-                type="text"
-                name="organizer_name"
-                placeholder="Type your name"
-              />
-            </span>
-            <span>
-              <button type="submit" class="button_submit">
-                Get started
-              </button>
-            </span>
-          </div>
-        </form>
+        <div class="text-center">
+          <a href="{{url_for('check_event_key')}}">
+            <button type="submit" class="button_submit">
+              Get started
+            </button>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
 {% endblock %}
