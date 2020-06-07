@@ -23,6 +23,29 @@ def check_event_key():
     return render_template('check_event_key.html')
 
 
+@app.route('/check_database', methods=["POST"])
+def check_database():
+    organizer_name = request.form["organizer_name"]
+    event_key = request.form["event_key"]
+    count_user = mongo.db.plans.count_documents((
+        {"organizer_name": organizer_name,
+         "event_key": event_key}))
+    if count_user > 0:
+        not_available_word = "This event key is not available with the organizer name. Please use a different event key."
+        return render_template('check_event_key.html',
+                               not_available_word=not_available_word,
+                               organizer_name=organizer_name,
+                               event_key=event_key)
+    else:
+        plans = mongo.db.plans
+        plans.insert_one(request.form.to_dict())
+        organizer_name = request.form["organizer_name"]
+        plan_id = plans.find({"organizer_name": organizer_name}).sort("_id", -1)[0]["_id"]
+        return render_template('create_new_plan.html',
+                               organizer_name=organizer_name,
+                               plan_id=plan_id)
+
+
 @app.route('/update_details/<plan_id>', methods=["POST"])
 def update_details(plan_id):
     list_avail = []
