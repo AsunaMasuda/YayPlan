@@ -211,6 +211,24 @@ def change_plan(plan_id):
                                plan_id=the_plan['_id'])
 
 
+@app.route('/see_plan_from_restore/<plan_id>')
+def see_plan_from_restore(plan_id):
+    the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
+    organizer_name = the_plan['organizer_name']
+    event_key = the_plan['event_key']
+    try:
+        the_plan['availabilities']
+        return redirect(url_for('update_plan_participants',
+                                plan_id=plan_id))
+    except:
+        suggestion_word = "The plan is not set yet. Please go to 'Change Your Plan' link on the left."
+        return render_template('restored_data.html',
+                               plan_id=plan_id,
+                               organizer_name=organizer_name,
+                               event_key=event_key,
+                               suggestion_word=suggestion_word)
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
