@@ -1,20 +1,22 @@
 {% extends 'base.html' %} {% block content %}
+
 <div class="plan_body">
   <div class="container">
     <div class="row">
       <div class="col-md">
-        <h2 class="text-center title_create_new_plan">What's your plan?</h2>
+        <h2 class="text-center title_create_new_plan">
+          Step 2/3. What's your plan?
+        </h2>
         <form
-          action="{{ url_for('update_details', organizer_name=organizer_name, plan_id = look_for_id._id) }}"
+          action="{{ url_for('update_details', organizer_name=organizer_name, plan_id = plan_id) }}"
           method="POST"
           class="needs-validation"
-          novalidate
         >
           <div class="contact-form">
             <div class="form-row row-form-adjust">
               <span class="col-sm-4"
-                ><i class="fas fa-user-alt icon_creat_plan"></i> Organizer's
-                Name</span
+                ><i class="fas fa-user-alt icon_creat_plan"></i
+                >&nbsp;&nbsp;Organizer's Name</span
               >
               <span class="col-sm-8"
                 ><input
@@ -24,6 +26,7 @@
                   value="{{organizer_name}}"
                   aria-invalid="false"
                   required
+                  readonly
                 />
                 <p class="invalid-feedback">
                   Please input organizer's name.
@@ -32,8 +35,8 @@
             </div>
             <div class="form-row row-form-adjust">
               <span class="col-sm-4"
-                ><i class="fas fa-chess-queen icon_creat_plan"></i> Event
-                Name</span
+                ><i class="fas fa-chess-queen icon_creat_plan"></i
+                >&nbsp;&nbsp;Event Name</span
               >
               <span class="col-sm-8"
                 ><input
@@ -50,8 +53,8 @@
             </div>
             <div class="form-row row-form-adjust">
               <span class="col-sm-4"
-                ><i class="fas fa-info-circle icon_creat_plan"></i> Event
-                Description</span
+                ><i class="fas fa-info-circle icon_creat_plan"></i
+                >&nbsp;&nbsp;Event Description</span
               >
               <span class="col-sm-8">
                 <textarea
@@ -67,18 +70,19 @@
             </div>
             <div class="form-row row-form-adjust container_avail">
               <div class="col-sm-4">
-                <i class="far fa-calendar-alt icon_creat_plan"></i> Date & Time
+                <i class="far fa-calendar-alt icon_creat_plan"></i
+                >&nbsp;&nbsp;Date
               </div>
               <div class="col-sm-8">
-                <div class="element_avail" id="addavail_1">
+                <div class="element_avail" id="addavail_0">
                   <input
                     type="text"
                     class="form-control avail_picker form-valid"
-                    name="availability_1"
+                    name="availability_0"
                     required
                   />
                   <p class="invalid-feedback">
-                    Please input at least one availability.
+                    Please input an availability.
                   </p>
                 </div>
               </div>
@@ -90,7 +94,8 @@
             </div>
             <div class="form-row row-form-adjust container_place">
               <div class="col-sm-4">
-                <i class="fas fa-map-marker-alt icon_creat_plan"></i> Places
+                <i class="fas fa-map-marker-alt icon_creat_plan"></i
+                >&nbsp;&nbsp;Places
               </div>
               <div class="col-sm-8">
                 <div class="element_place" id="addplaces_1">
@@ -102,19 +107,14 @@
                     required
                   />
                   <p class="invalid-feedback">
-                    Please input at least one place.
+                    Please input a place.
                   </p>
                 </div>
-              </div>
-              <div class="col-sm-12">
-                <p class="text-right add_more" id="addplaces_button">
-                  + Add more places
-                </p>
               </div>
             </div>
             <div class="row d-flex justify-content-center">
               <div>
-                <button type="submit" id="button_create">Create</button>
+                <input type="submit" class="button_create" value="Create" />
               </div>
             </div>
           </div>
@@ -123,4 +123,5 @@
     </div>
   </div>
 </div>
-{% endblock %}
+
+‰ {% endblock %}
