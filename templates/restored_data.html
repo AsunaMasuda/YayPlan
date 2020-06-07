@@ -1,0 +1,55 @@
+{% extends 'restore_plan.html' %} {% block restored_data %}
+<div class="container restored_data_container">
+  <div class="row text-center">
+    <div class="col-lg-4">
+      <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+        <h4>Change information of your plan.</h4>
+        <div>
+          <a href="{{url_for('change_plan', plan_id=plan_id)}}">
+            <button id="change_plan">
+              Change Your Plan
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+        <h4>Go to the participant page.</h4>
+        <div>
+          <a href="{{url_for('see_plan_from_restore', plan_id=plan_id)}}">
+            <button id="button_see_plan">
+              See Your Plan
+            </button>
+          </a>
+          <p>{{ suggestion_word }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+        <h4>Copy your url to share with participants.</h4>
+        <div class="copy_link_to_clipboard justify-content-center">
+          <span class="copy_link_text">
+            <input
+              id="copy_link_url"
+              class="copy_link_url"
+              type="text"
+              value="https:/{{url_for('update_plan_participants', plan_id=plan_id)}}"
+              readonly
+            />
+          </span>
+          <span>
+            <button type="submit" class="button_copy_link" onclick="myFunction()">
+              Copy Link
+            </button>
+          </span>
+        </div>
+        <div>
+          <p class="copied_successfully text-center">.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
