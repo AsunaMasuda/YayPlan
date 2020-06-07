@@ -196,6 +196,21 @@ def restore_data():
                                event_key=event_key)
 
 
+@app.route('/change_plan/<plan_id>')
+def change_plan(plan_id):
+    the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
+    try:
+        range_availability = range(0, len(the_plan['availabilities']))
+        return render_template('change_plan.html',
+                               the_plan=the_plan,
+                               plan_id=the_plan['_id'],
+                               range_availability=range_availability)
+    except:
+        return render_template('change_plan.html',
+                               the_plan=the_plan,
+                               plan_id=the_plan['_id'])
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
