@@ -126,7 +126,7 @@ To clone this project from GitHub:
 - to be updated
 
 ### Images
-- People vector created by [pikisuperstar - www.freepik.com](https://www.freepik.com/free-photos-vectors/people)
+- The images used in the top page are created by [pikisuperstar - www.freepik.com](https://www.freepik.com/free-photos-vectors/people)
 
 ### API
 - to be updated
