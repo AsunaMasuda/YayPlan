@@ -40,7 +40,8 @@ def check_database():
         plans = mongo.db.plans
         plans.insert_one(request.form.to_dict())
         organizer_name = request.form["organizer_name"]
-        plan_id = plans.find({"organizer_name": organizer_name}).sort("_id", -1)[0]["_id"]
+        plan_id = plans.find({"organizer_name": organizer_name}).sort(
+            "_id", -1)[0]["_id"]
         return render_template('create_new_plan.html',
                                organizer_name=organizer_name,
                                plan_id=plan_id)
@@ -139,7 +140,8 @@ def edit_yourplan(plan_id):
                 each_availability = "availability_" + str(n)
                 try:
                     dict_avail_edit.append(request.form[each_availability])
-                except: break
+                except:
+                    break
             updating_participant_DB = "participants." + str(i)
 
             mongo.db.plans.update(
@@ -167,8 +169,32 @@ def delete_participant(plan_id):
 
 @app.route('/restore_plan')
 def restore_plan():
-   return render_template('restore_plan.html')
-   
+    return render_template('restore_plan.html')
+
+
+@app.route('/restore_data', methods=["POST"])
+def restore_data():
+    organizer_name = request.form["organizer_name"]
+    event_key = request.form["event_key"]
+    count_user = mongo.db.plans.count_documents((
+        {"organizer_name": organizer_name,
+         "event_key": event_key}))
+    if count_user > 0:
+        the_plan = mongo.db.plans.find_one(
+            {"organizer_name": request.form["organizer_name"],
+             "event_key": request.form["event_key"]})
+        plan_id = the_plan['_id']
+        return render_template('restored_data.html',
+                               plan_id=plan_id,
+                               organizer_name=organizer_name,
+                               event_key=event_key)
+    else:
+        not_found_message = "Either the name or the event key is wrong. Please try it again."
+        return render_template('restore_plan.html',
+                               not_found_message=not_found_message,
+                               organizer_name=organizer_name,
+                               event_key=event_key)
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
