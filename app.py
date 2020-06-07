@@ -18,27 +18,15 @@ def start():
     return render_template('start.html')
 
 
-@app.route('/restore_plan')
-def restore_plan():
-    return render_template('restore_plan.html')
-
-
-@app.route('/insert_new_plan', methods=["POST"])
-def insert_new_plan():
-    plans = mongo.db.plans
-    plans.insert_one(request.form.to_dict())
-    organizer_name = request.form["organizer_name"]
-    look_for_id = plans.find(
-        {"organizer_name": organizer_name}).sort("_id", -1)[0]
-    return render_template('create_new_plan.html',
-                           organizer_name=organizer_name,
-                           look_for_id=look_for_id)
+@app.route('/check_event_key')
+def check_event_key():
+    return render_template('check_event_key.html')
 
 
 @app.route('/update_details/<plan_id>', methods=["POST"])
 def update_details(plan_id):
     list_avail = []
-    for i in range(1, 6):
+    for i in range(0, 6):
         each_availability = "availability_" + str(i)
         try:
             list_avail.append(request.form[each_availability])
@@ -128,9 +116,7 @@ def edit_yourplan(plan_id):
                 each_availability = "availability_" + str(n)
                 try:
                     dict_avail_edit.append(request.form[each_availability])
-                except:
-                    
-                    break
+                except: break
             updating_participant_DB = "participants." + str(i)
 
             mongo.db.plans.update(
