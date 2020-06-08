@@ -6,10 +6,8 @@
 
 1. [UX](#ux)
     - [Goals](#goals)
-        - [Visitor's Goals](#visitors-goals)
-        - [Developer's Goals](#developers-goals)
+        - [User's Goals](#user-goals)
     - [User Stories](#user-stories)
-    - [Design Choices](#design-choices)
     - [Wireframes](#wireframes)
 
 2. [Features](#features)
@@ -33,31 +31,24 @@
 
 # UX
 ## Goals
-The goal of this website is 
+The goal of this project is to create a web application to enables users to plan an event and schedule the date with participants, with simple steps.
 
-### Visitor's Goals
-Visitor's goals are:
+### User's Goals
+The target audience for this website is:
+- People who want to plan an event and find out the best date for the participants
 
-[YayPlan]() met this goal by:
-- to be updated
-
-### Developer's Goals
-The developer's Goals were:
-- to be updated
-
+The user goal is to have:
+- A platform that allows them to launch a schedular which is easy to share with participants
+- A flexibility to modify the details of the plan and the number of participants
 
 ## User Stories
-As a visitor to [YayPlan]() I'd want to:
-- to be updated
-
-
-## Design Choices
-YayPlan was designed with hassle-free and intuitive use in mind:
-- to be updated
+As a user of YayPlan, I can edit the plan anytime and invite as many as people to register their schedule, so that I don't need to set up again from scratch when there is any change in the plan or the participants.
 
 ## Wireframes
 Wireframes were created with [balsamiq](https://balsamiq.com/).
-- [Original Project Mockup]()
+- [Homepage]()
+- [Create plan page]()
+- [Update participant page]()
 
 # Features
 
