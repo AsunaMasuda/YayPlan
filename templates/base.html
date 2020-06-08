@@ -32,38 +32,47 @@
 
   <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-      <a class="navbar-brand js-scroll-trigger" href="{{url_for('start')}}"
-        >YayPlan</a
-      >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarResponsive"
-        aria-controls="navbarResponsive"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse show" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a
-              class="nav-link js-scroll-trigger"
-              href="{{url_for('start')}}#how_it_works"
-              >How it works</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link js-scroll-trigger"
-              href="{{url_for('restore_plan')}}"
-              >Restore your plan</a
-            >
-          </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="{{url_for('start')}}"
+          >YayPlan</a
+        >
+        <button
+          class="navbar-toggler collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link js-scroll-trigger"
+                href="{{url_for('check_event_key')}}#how_it_works"
+                >Get Started</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link js-scroll-trigger"
+                href="{{url_for('start')}}#how_it_works"
+                >How it works</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link js-scroll-trigger"
+                href="{{url_for('restore_plan')}}"
+                >Restore your plan</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
     <div id="mainpage">
@@ -71,8 +80,14 @@
 
       <!-- Footer -->
       <footer class="py-5 footer">
-      <a href="https://github.com/AsunaMasuda" target="_blank"><i class="fab fa-github icon-mainpage"></i></a>&nbsp;&nbsp;
-      <a href="https://www.linkedin.com/in/asuna-fitzpatrick-masuda/"  target="_blank"><i class="fab fa-linkedin icon-mainpage"></i></a>
+        <a href="https://github.com/AsunaMasuda" target="_blank"
+          ><i class="fab fa-github icon-mainpage"></i></a
+        >&nbsp;&nbsp;
+        <a
+          href="https://www.linkedin.com/in/asuna-fitzpatrick-masuda/"
+          target="_blank"
+          ><i class="fab fa-linkedin icon-mainpage"></i
+        ></a>
         <div class="container">
           <p class="m-0 text-center">Copyright &copy; Asuna Masuda 2020</p>
         </div>
