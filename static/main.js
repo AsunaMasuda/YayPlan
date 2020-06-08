@@ -1,45 +1,8 @@
 $(document).ready(function () {
-  // Add more places in create_new_plan.html
+
+  // Add more date in create_new_plan.html
   /**
-   * This function adds more options for places
-   * @constructor
-   */
-  $("#addplaces_button").on("click", function () {
-    // Finding total number of elements added
-    let total_element = $(".element_place").length;
-    let lastid = $(".element_place:last").attr("id");
-    let split_id = lastid.split("_");
-    let next_index = Number(split_id[1]) + 1;
-
-    let max = 10;
-    if (total_element < max) {
-      // Adding new div container after last occurance of element class
-      $(".element_place:last").after(
-        `<div class="element_place" id="addplaces_` + next_index + `"></div>`
-      );
-
-      $("#addplaces_" + next_index).append(
-        `<div class="row"><div class="col-sm-9"><input type="text" class="form-control event_place form-valid" name="event_place_` +
-          next_index +
-          `"></div><div class="col-sm-3 my-auto"><span id="remove_` +
-          next_index +
-          `" class="remove_place_button">Remove</span></div></div>`
-      );
-    }
-  });
-
-  // Remove element
-  $(".container").on("click", ".remove_place_button", function () {
-    let remove_id = this.id;
-    let split_id = remove_id.split("_");
-    let deleteindex = split_id[1];
-
-    $("#addplaces_" + deleteindex).remove();
-  });
-
-  // Add more date & time in create_new_plan.html
-  /**
-   * This function adds more options for date and time
+   * This function adds more options for date
    * @constructor
    */
   $("#addavail_button").on("click", function () {
@@ -75,7 +38,12 @@ $(document).ready(function () {
     let split_id = remove_id.split("_");
     let deleteindex = split_id[1];
 
-    $("#addavail_" + deleteindex).remove();
+    if (deleteindex > 0){
+        $("#addavail_" + deleteindex).remove();
+    }   
+    else {
+    pass
+    }
   });
 
   // Add flatpickr
@@ -91,9 +59,10 @@ $(document).ready(function () {
 
   flatpickr(".avail_picker", fpConf);
 
+
   // Validation
   /**
-   * Validation
+   * This function enables validation method
    * @constructor
    */
   (function () {
@@ -155,7 +124,7 @@ $(document).ready(function () {
     $("#participant_" + next_index).append(
       `<td><input type="text" class="form-control" name="participant_` +
         next_index +
-        `" form="form1"/></td>` +
+        `" form="form1" required/></td>` +
         html_isert_td_all +
         `<td><textarea class="form-control" rows="1" name="participant_note" form="form1"></textarea></td><td><button id ="removeparticipant_` +
         next_index +
@@ -220,7 +189,7 @@ $(document).ready(function () {
     let num_yes = 0;
     let num_no = 0;
     let num_maybe = 0;
-    let test_variable = ".test_" + i.toString();
+    let test_variable = ".avail_num_" + i.toString();
     class_name_availability = "availability_" + i.toString();
     let valueArray = document.getElementsByClassName(class_name_availability);
     for (let n = 0; n < element_participant_num; n++) {
@@ -232,7 +201,15 @@ $(document).ready(function () {
         num_maybe = num_maybe + 1;
       }
     }
-    $(test_variable).append(`<div>Yes - `+ num_yes + `</div><div>No - ` + num_no + `</div><div>Maybe - ` + num_maybe + `</div>`)
+    $(test_variable).append(
+      `<div>Yes - ` +
+        num_yes +
+        `</div><div>No - ` +
+        num_no +
+        `</div><div>Maybe - ` +
+        num_maybe +
+        `</div>`
+    );
   }
 });
 
