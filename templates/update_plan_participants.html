@@ -39,63 +39,65 @@
 
     <div class="row">
       <div class="col-sm-12 container">
-        <table class="table text-center">
-          <tbody class="element_participant">
-            <tr class="element_avail_num">
-              <th scope="col" class="vertical-align-middle">Name</th>
-              {% for avail in range_availability %}
-              <th scope="col" class="avail vertical-align-middle">
-                {{ the_plan.availabilities[avail] }}
-              </th>
-              {% endfor %}
-              <th scope="col" class="vertical-align-middle">Note</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-            </tr>
+        <div class="hscroll">
+          <table class="table text-center">
+            <tbody class="element_participant">
+              <tr class="element_avail_num">
+                <th scope="col" class="vertical-align-middle">Name</th>
+                {% for avail in range_availability %}
+                <th scope="col" class="avail vertical-align-middle">
+                  {{ the_plan.availabilities[avail] }}
+                </th>
+                {% endfor %}
+                <th scope="col" class="vertical-align-middle">Note</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
 
-            <tr class="element_avail_num">
-              <td class="vertical-align-middle"></td>
-              {% for avail in range_availability %}
-              <td class="vertical-align-middle">
-                <div class="avail_num_{{avail}}"></div>
-              </td>
-              {% endfor %}
-              <td class="vertical-align-middle"></td>
-            </tr>
+              <tr class="element_avail_num">
+                <td class="vertical-align-middle"></td>
+                {% for avail in range_availability %}
+                <td class="vertical-align-middle">
+                  <div class="avail_num_{{avail}}"></div>
+                </td>
+                {% endfor %}
+                <td class="vertical-align-middle"></td>
+              </tr>
 
-            <tr class="participant_count" id="participant_0"></tr>
-            {% for num_participant in range_participant %}
-            <tr
-              class="participant_count border_bottom"
-              id="participant_{{num_participant}}"
-            >
-              <td class="participant_name vertical-align-middle">
-                {{ the_plan.participants[num_participant].name }}
-              </td>
-
-              {% for num_availability in range_availability %}
-              <td
-                class="vertical-align-middle availability_{{num_availability}}"
+              <tr class="participant_count" id="participant_0"></tr>
+              {% for num_participant in range_participant %}
+              <tr
+                class="participant_count border_bottom"
+                id="participant_{{num_participant}}"
               >
-                {{
-                the_plan.participants[num_participant].availabilities[num_availability]
-                }}
-              </td>
-              {% endfor %}
-              <td class="vertical-align-middle">
-                {{ the_plan.participants[num_participant].participant_note }}
-              </td>
+                <td class="participant_name vertical-align-middle">
+                  {{ the_plan.participants[num_participant].name }}
+                </td>
 
-              <td class="vertical-align-middle">
-                <div class="participant_schedule_button button_edit">
-                  Edit
-                </div>
-              </td>
-              <td></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+                {% for num_availability in range_availability %}
+                <td
+                  class="vertical-align-middle availability_{{num_availability}}"
+                >
+                  {{
+                  the_plan.participants[num_participant].availabilities[num_availability]
+                  }}
+                </td>
+                {% endfor %}
+                <td class="vertical-align-middle">
+                  {{ the_plan.participants[num_participant].participant_note }}
+                </td>
+
+                <td class="vertical-align-middle">
+                  <div class="participant_schedule_button button_edit">
+                    Edit
+                  </div>
+                </td>
+                <td></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
     <div class="text-center">
