@@ -21,6 +21,8 @@
     - [Features Left to Implement](#features-left-to-implement)
         - [Delete the data in the database](#delete-the-data-in-the database)
 
+3. [Information Architecture](#information-architecture)
+
 4. [Technologies Used](#technologies-used)
 
 5. [Testing](#testing)
@@ -82,24 +84,53 @@ Wireframes were created with [balsamiq](https://balsamiq.com/).
 - After the data of the event passed, automatically the data is deleted to assure the storage
 - The ability for the organizer to delete the event they created
 
+# Information Architecture
+MongoDB Atlas is used for storing data for this web site.
+
+The following is the data structure. 
+```
+{
+    _id : ObjectId()
+    organizer_name : String,
+    event_key : String,
+    availabilities : Array,
+    event_description : String,
+    event_name : String,
+    event_place : String,
+    participants : Array
+                   { 
+        name: String,
+        availabilities: Array,
+        participant note: String
+     }
+}
+```
+
 # Technologies Used
-1. HTML
-2. CSS
-3. Bootstrap (v4.4.1)
-4. JavaScript (JQuery, JQuery-UI)
-5. Python
-6. Flask
-7. Jinja
-8. Git/GitHub
-9. Gitpod
-10. MongoDB Atlas
+### Languages 
+- HTML, CSS, JavaScript, Python
+
+### Libraries
+- Bootstrap (v4.4.1)
+- JQuery
+- JQuery-UI
+- Popper.js
+- Font Awesome
+- Flask
+- Jinja
+- PyMongo
+
+### Tools
+- Git/GitHub
+- Gitpod
+- MongoDB Atlas
 
 # Testing
 ### Validation Tools
 - HTML: [W3C HTML Validator](https://validator.w3.org/)
 - CSS: [W3C CSS validator](https://jigsaw.w3.org/css-validator/)
 - JavaScript: [JSHint](https://jshint.com/)
-- Python: 
+- Python: [PEP8 online](http://pep8online.com/)
 
 ### Manual Testing
 I created [a testing matrix]() to make sure the site works as expected in different devices, browsers and screen sizes.
