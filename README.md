@@ -12,10 +12,16 @@
 
 2. [Features](#features)
     - [Existing Features](#existing-features)
-        - [to be updated](#song-search-and-result)
-        - [to be updated](#lyrics)
-        - [to be updated](#artist-information)
+        - [Home page](#home-page)
+        - [Page for registering a name and an event key](#page-for-registering-a-name-and-an-event-key)
+        - [Page for registering details of the event](#page-for-registering-details-of-the-event)
+        - [Page for getting a shareable link](#page-for-getting-a-shareable-link)
+        - [Page for participants](#page-for-participants)
+        - [Page for restoring an existing plan](#page-for-restoring-an-existing-plan)
     - [Features Left to Implement](#features-left-to-implement)
+        - [Delete the data in the database](#delete-the-data-in-the database)
+
+3. [Information Architecture](#information-architecture)
 
 4. [Technologies Used](#technologies-used)
 
@@ -46,38 +52,85 @@ As a user of YayPlan, I can edit the plan anytime and invite as many as people t
 
 ## Wireframes
 Wireframes were created with [balsamiq](https://balsamiq.com/).
-- [Homepage]()
-- [Create plan page]()
-- [Update participant page]()
+- [Homepage](https://github.com/AsunaMasuda/MilestoneProject3/blob/master/image_README/top-page.png)
+- [Create plan page](https://github.com/AsunaMasuda/MilestoneProject3/blob/master/image_README/create-plan.png)
+- [Update participant page](https://github.com/AsunaMasuda/MilestoneProject3/blob/master/image_README/update-participants.png)
 
 # Features
 
 ## Existing Features
-### to be updated
+### Home page
+- This page is used as a landing page. It contains "how it works" section and a "Get started" button to start the planning. 
 
+### Page for registering a name and an event key
+- Users register their name (organizer's name) and an event key. Event keys are used to restore the data when there is any change happened in the event, and also restores the shareable link for participants.
+- This page also checks if the combination of the name and the event key input is available or not.
 
-### to be updated
+### Page for registering details of the event
+- Users can set up the details(event title, description, date, place) of the event in this page. They can set up multiple dates so the participants can answer when they are available.
 
+### Page for getting a shareable link
+- This page comes up after completing registering the details and provides the shareable link with participants.
 
-### to be updated
+### Page for participants
+- This page allows participants can add their name, availabilities(Yes/No/Maybe) and a note. 
+- Participants can edit their answers and also delete the data in this page.
 
+### Page for restoring an existing plan
+- This page allows users to enable 1. to edit the existing event data and 2. to get the shareable link with entering the organizer name and the event key which they registered. 
 
 ## Features Left to Implement
+### Delete the data in the database
+- After the data of the event passed, automatically the data is deleted to assure the storage
+- The ability for the organizer to delete the event they created
 
+# Information Architecture
+MongoDB Atlas is used for storing data for this web site.
+
+The following is the data structure. 
+```
+{
+    _id : ObjectId()
+    organizer_name : String,
+    event_key : String,
+    availabilities : Array,
+    event_description : String,
+    event_name : String,
+    event_place : String,
+    participants : Array
+                   { 
+        name: String,
+        availabilities: Array,
+        participant note: String
+     }
+}
+```
 
 # Technologies Used
-1. HTML
-2. CSS
-3. Bootstrap (v4.4.1)
-4. JavaScript (JQuery, JQuery-UI)
-5. Git/GitHub
-6. Gitpod
+### Languages 
+- HTML, CSS, JavaScript, Python
+
+### Libraries
+- Bootstrap (v4.4.1)
+- JQuery
+- JQuery-UI
+- Popper.js
+- Font Awesome
+- Flask
+- Jinja
+- PyMongo
+
+### Tools
+- Git/GitHub
+- Gitpod
+- MongoDB Atlas
 
 # Testing
 ### Validation Tools
 - HTML: [W3C HTML Validator](https://validator.w3.org/)
 - CSS: [W3C CSS validator](https://jigsaw.w3.org/css-validator/)
 - JavaScript: [JSHint](https://jshint.com/)
+- Python: [PEP8 online](http://pep8online.com/)
 
 ### Manual Testing
 I created [a testing matrix]() to make sure the site works as expected in different devices, browsers and screen sizes.
@@ -117,10 +170,7 @@ To clone this project from GitHub:
 - to be updated
 
 ### Images
-- The images used in the top page are created by [pikisuperstar - www.freepik.com](https://www.freepik.com/free-photos-vectors/people)
-
-### API
-- to be updated
+- The images used in the home page are created by [pikisuperstar - www.freepik.com](https://www.freepik.com/free-photos-vectors/people)
 
 ### JavaScript
 - [flatpickr - javascript datetime picker](https://github.com/flatpickr/flatpickr)
