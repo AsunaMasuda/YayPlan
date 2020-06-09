@@ -11,7 +11,6 @@ app = Flask(__name__)
 # Environment variables
 app.config["MONGO_DBNAME"] = 'myPlanner'
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
 
 mongo = PyMongo(app)
 
