@@ -5,19 +5,25 @@ from bson.objectid import ObjectId
 if os.path.exists("env.py"):
     import env
 
+# creates an instance of flask and assign it to the app variable
 app = Flask(__name__)
+
+# Environment variables
 app.config["MONGO_DBNAME"] = 'myPlanner'
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
 
 mongo = PyMongo(app)
 
 
+# Homepage
 @app.route('/')
 @app.route('/start')
 def start():
     return render_template('start.html')
 
 
+# Page for registering a name and an event key
 @app.route('/check_event_key')
 def check_event_key():
     return render_template('check_event_key.html')
@@ -47,6 +53,7 @@ def check_database():
                                plan_id=plan_id)
 
 
+# Page for registering details of the event
 @app.route('/update_details/<plan_id>', methods=["POST"])
 def update_details(plan_id):
     list_avail = []
@@ -68,6 +75,7 @@ def update_details(plan_id):
     return render_template('after_creating_plan.html', plan_id=plan_id)
 
 
+# Page for participants
 @app.route('/update_plan_participants/<plan_id>')
 def update_plan_participants(plan_id):
     the_plan = mongo.db.plans.find_one({"_id": ObjectId(plan_id)})
@@ -82,6 +90,7 @@ def update_plan_participants(plan_id):
                            range_availability=range_availability)
 
 
+# Connecting to the data base to register participants
 @app.route('/update_plan_complete/<plan_id>', methods=["POST"])
 def update_plan_complete(plan_id):
     i = 0
@@ -115,20 +124,63 @@ def update_plan_complete(plan_id):
     return render_template('after_updating_plan.html', plan_id=plan_id)
 
 
-@app.route('/check_plan_participants/<plan_id>')
-def check_plan_participants(plan_id):
-    the_plan = mongo.db.plans.find_one({"_id": ObjectId(plan_id)})
-    range_availability = range(0, len(the_plan['availabilities']))
-    if the_plan['participants'] == 0:
-        range_participant = 0
+# Delete a participant
+@app.route('/delete_participant/<plan_id>', methods=["POST"])
+def delete_participant(plan_id):
+    mongo.db.plans.update({'_id': ObjectId(plan_id)},
+                          {'$pull': {'participants': {
+                              'name': request.form['edit_name']}}})
+    return render_template('after_updating_plan.html', plan_id=plan_id)
+
+
+# Render the template for restore plan page
+@app.route('/restore_plan')
+def restore_plan():
+    return render_template('restore_plan.html')
+
+
+# Check if the name and the event key match the data in the collection
+@app.route('/restore_data', methods=["POST"])
+def restore_data():
+    organizer_name = request.form["organizer_name"]
+    event_key = request.form["event_key"]
+    count_user = mongo.db.plans.count_documents((
+        {"organizer_name": organizer_name,
+         "event_key": event_key}))
+    if count_user > 0:
+        the_plan = mongo.db.plans.find_one(
+            {"organizer_name": request.form["organizer_name"],
+             "event_key": request.form["event_key"]})
+        plan_id = the_plan['_id']
+        return render_template('restored_data.html',
+                               plan_id=plan_id,
+                               organizer_name=organizer_name,
+                               event_key=event_key)
     else:
-        range_participant = range(0, len(the_plan['participants']))
-    return render_template('update_plan_participants.html',
-                           plan_id=plan_id, the_plan=the_plan,
-                           range_participant=range_participant,
-                           range_availability=range_availability)
+        not_found_message = "Either the name or the event key is wrong. Please try it again."
+        return render_template('restore_plan.html',
+                               not_found_message=not_found_message,
+                               organizer_name=organizer_name,
+                               event_key=event_key)
 
 
+# Render the page for editing the existing plan from restore page
+@app.route('/change_plan/<plan_id>')
+def change_plan(plan_id):
+    the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
+    try:
+        range_availability = range(0, len(the_plan['availabilities']))
+        return render_template('change_plan.html',
+                               the_plan=the_plan,
+                               plan_id=the_plan['_id'],
+                               range_availability=range_availability)
+    except:
+        return render_template('change_plan.html',
+                               the_plan=the_plan,
+                               plan_id=the_plan['_id'])
+
+
+# Edit the existing plan from restore page
 @app.route('/edit_yourplan/<plan_id>', methods=["POST"])
 def edit_yourplan(plan_id):
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
@@ -159,58 +211,7 @@ def edit_yourplan(plan_id):
     return render_template('after_updating_plan.html', plan_id=plan_id)
 
 
-@app.route('/delete_participant/<plan_id>', methods=["POST"])
-def delete_participant(plan_id):
-    mongo.db.plans.update({'_id': ObjectId(plan_id)},
-                          {'$pull': {'participants': {
-                              'name': request.form['edit_name']}}})
-    return render_template('after_updating_plan.html', plan_id=plan_id)
-
-
-@app.route('/restore_plan')
-def restore_plan():
-    return render_template('restore_plan.html')
-
-
-@app.route('/restore_data', methods=["POST"])
-def restore_data():
-    organizer_name = request.form["organizer_name"]
-    event_key = request.form["event_key"]
-    count_user = mongo.db.plans.count_documents((
-        {"organizer_name": organizer_name,
-         "event_key": event_key}))
-    if count_user > 0:
-        the_plan = mongo.db.plans.find_one(
-            {"organizer_name": request.form["organizer_name"],
-             "event_key": request.form["event_key"]})
-        plan_id = the_plan['_id']
-        return render_template('restored_data.html',
-                               plan_id=plan_id,
-                               organizer_name=organizer_name,
-                               event_key=event_key)
-    else:
-        not_found_message = "Either the name or the event key is wrong. Please try it again."
-        return render_template('restore_plan.html',
-                               not_found_message=not_found_message,
-                               organizer_name=organizer_name,
-                               event_key=event_key)
-
-
-@app.route('/change_plan/<plan_id>')
-def change_plan(plan_id):
-    the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
-    try:
-        range_availability = range(0, len(the_plan['availabilities']))
-        return render_template('change_plan.html',
-                               the_plan=the_plan,
-                               plan_id=the_plan['_id'],
-                               range_availability=range_availability)
-    except:
-        return render_template('change_plan.html',
-                               the_plan=the_plan,
-                               plan_id=the_plan['_id'])
-
-
+# Render the page for updating participants from restore page
 @app.route('/see_plan_from_restore/<plan_id>')
 def see_plan_from_restore(plan_id):
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
