@@ -1,6 +1,7 @@
 # YayPlan
-[YayPlan]() is a easy schedule planner app which you can use when you want to set up a gathering with your friends and families. 
+[YayPlan](https://yayplan.herokuapp.com/) is a easy schedule planner app which you can use when you want to set up a gathering with your friends and families. 
 
+<p align="center"><img src = "https://github.com/AsunaMasuda/MilestoneProject3/blob/master/image_README/responsive_site.png?raw=true" width=900></p>
 
 ## Table of Contents
 
@@ -63,7 +64,7 @@ Wireframes were created with [balsamiq](https://balsamiq.com/).
 - This page is used as a landing page. It contains "how it works" section and a "Get started" button to start the planning. 
 
 ### Page for registering a name and an event key
-- Users register their name (organizer's name) and an event key. Event keys are used to restore the data when there is any change happened in the event, and also restores the shareable link for participants.
+- Users register their name (organizer's name) and an event key. Event keys are used to restore the data when there is any change happened in the event, restore the shareable link for participants and delete the event itself, if they wish.
 - This page also checks if the combination of the name and the event key input is available or not.
 
 ### Page for registering details of the event
@@ -74,7 +75,7 @@ Wireframes were created with [balsamiq](https://balsamiq.com/).
 
 ### Page for participants
 - This page allows participants can add their name, availabilities(Yes/No/Maybe) and a note. 
-- Participants can edit their answers and also delete the data in this page.
+- Participants can edit their answers and also delete the data in this page. This app is made for the situation shere they No key is required to edit or delete the participant schedule. 
 
 ### Page for restoring an existing plan
 - This page allows users to enable 1. to edit the existing event data and 2. to get the shareable link with entering the organizer name and the event key which they registered. 
@@ -82,7 +83,7 @@ Wireframes were created with [balsamiq](https://balsamiq.com/).
 ## Features Left to Implement
 ### Delete the data in the database
 - After the data of the event passed, automatically the data is deleted to assure the storage
-- The ability for the organizer to delete the event they created
+- The delete options of participants are managed with an unique delete key associated with each participant for the situation where there are many people use this app
 
 # Information Architecture
 MongoDB Atlas is used for storing data for this web site.
