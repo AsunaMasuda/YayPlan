@@ -1,24 +1,24 @@
 {% extends 'restore_plan.html' %} {% block restored_data %}
 <div class="container restored_data_container">
   <div class="row text-center">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
         <h4>Change information of your plan.</h4>
         <div>
           <a href="{{url_for('change_plan', plan_id=plan_id)}}">
-            <button id="change_plan">
+            <button class="restored_button">
               Change Your Plan
             </button>
           </a>
         </div>
       </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
         <h4>Go to the participant page.</h4>
         <div>
           <a href="{{url_for('see_plan_from_restore', plan_id=plan_id)}}">
-            <button id="button_see_plan">
+            <button class="restored_button">
               See Your Plan
             </button>
           </a>
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <div class="features-icons-item mx-auto mb-0 mb-lg-3">
         <h4>Copy your url to share with participants.</h4>
         <div class="copy_link_to_clipboard justify-content-center">
@@ -54,6 +54,63 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-3">
+      <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+        <h4>Delete your plan.</h4>
+        <div class="copy_link_to_clipboard justify-content-center">
+          <button
+            class="restored_button"
+            data-toggle="modal"
+            type="button"
+            data-target="#myModalDelete"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="myModalDelete"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">
+          Are you sure to delete the plan?
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        The data you delete cannot be recovered.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="button_cancel" data-dismiss="modal">
+          Close
+        </button>
+        <a href="{{url_for('delete_plan', plan_id=plan_id)}}" target="_top">
+          <button type="button" class="participant_delete_from_DB">
+            Delete
+          </button></a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
