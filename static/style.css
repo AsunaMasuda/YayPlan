@@ -391,9 +391,8 @@ span {
   margin-top: 1rem;
 }
 
-#button_see_plan,
 #button_update,
-#change_plan,
+.restored_button,
 .participant_submit_button {
   margin-top: 20px;
   border-width: 1px;
@@ -415,8 +414,7 @@ span {
 .button_create:hover,
 .button_restore:hover,
 .button_submit:hover,
-#button_see_plan:hover,
-#change_plan:hover,
+.restored_button:hover,
 #button_update:hover,
 .remove_place_button:hover,
 .remove_avail_button:hover,
