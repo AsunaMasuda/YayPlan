@@ -229,7 +229,14 @@ def see_plan_from_restore(plan_id):
                                suggestion_word=suggestion_word)
 
 
+# Delete a plan that 
+@app.route('/delete_plan/<plan_id>')
+def delete_plan(plan_id):
+    mongo.db.plans.remove({'_id': ObjectId(plan_id)})
+    return render_template('after_delete.html')
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=False)
+            debug=True)
