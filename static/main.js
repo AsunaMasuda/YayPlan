@@ -36,10 +36,10 @@ $(document).ready(function () {
   $(".container").on("click", ".remove_avail_button", function () {
     let remove_id = this.id;
     let split_id = remove_id.split("_");
-    let deleteindex = split_id[1];
+    let removeindex = split_id[1];
 
-    if (deleteindex > 0){
-        $("#addavail_" + deleteindex).remove();
+    if (removeindex > 0){
+        $("#addavail_" + removeindex).remove();
     }   
     else {
     pass
@@ -136,9 +136,9 @@ $(document).ready(function () {
   $(".container").on("click", ".participant_remove", function () {
     let remove_id = this.id;
     let split_id = remove_id.split("_");
-    let deleteindex = split_id[1];
+    let removeindex = split_id[1];
 
-    $("#participant_" + deleteindex).remove();
+    $("#participant_" + removeindex).remove();
   });
 
   // Edit existing participant data
