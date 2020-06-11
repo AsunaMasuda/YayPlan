@@ -15,19 +15,32 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 mongo = PyMongo(app)
 
 
-# Homepage
+"""
+This renders start.html which is the top page of this website.
+"""
 @app.route('/')
 @app.route('/start')
 def start():
     return render_template('start.html')
 
 
-# Page for registering a name and an event key
+"""
+This renders a page to register an organizer name and an event key.
+"""
 @app.route('/check_event_key')
 def check_event_key():
     return render_template('check_event_key.html')
 
 
+"""
+This function communicates MongoDB database to check if the organizer name and
+the event key are available for the new user.
+
+If it's available, it returns a page for setting up the event details and
+creates a new collection.
+If it's not available, it returns a message to let users suggest
+a different key.
+"""
 @app.route('/check_database', methods=["POST"])
 def check_database():
     organizer_name = request.form["organizer_name"]
@@ -52,7 +65,9 @@ def check_database():
                                plan_id=plan_id)
 
 
-# Page for registering details of the event
+"""
+This function adds the details of the event to the collection.
+"""
 @app.route('/update_details/<plan_id>', methods=["POST"])
 def update_details(plan_id):
     list_avail = []
@@ -74,7 +89,11 @@ def update_details(plan_id):
     return render_template('after_creating_plan.html', plan_id=plan_id)
 
 
-# Page for participants
+"""
+This function renders a html for showing the details of the event to
+participants.
+The participants also can add their availability in this page.
+"""
 @app.route('/update_plan_participants/<plan_id>')
 def update_plan_participants(plan_id):
     the_plan = mongo.db.plans.find_one({"_id": ObjectId(plan_id)})
@@ -89,6 +108,11 @@ def update_plan_participants(plan_id):
                            range_availability=range_availability)
 
 
+"""
+This function adds the information submitted by participants to the collection
+ of the event.
+This handles submittions by multiple participants at the same time.
+"""
 # Connecting to the data base to register participants
 @app.route('/update_plan_complete/<plan_id>', methods=["POST"])
 def update_plan_complete(plan_id):
@@ -123,7 +147,9 @@ def update_plan_complete(plan_id):
     return render_template('after_updating_plan.html', plan_id=plan_id)
 
 
-# Delete a participant
+"""
+This function deletes participants data from the collection.
+"""
 @app.route('/delete_participant/<plan_id>', methods=["POST"])
 def delete_participant(plan_id):
     mongo.db.plans.update({'_id': ObjectId(plan_id)},
@@ -132,13 +158,22 @@ def delete_participant(plan_id):
     return render_template('after_updating_plan.html', plan_id=plan_id)
 
 
-# Render the template for restore plan page
+"""
+This renders a page for restoring an event with user's name and
+their event key.
+"""
 @app.route('/restore_plan')
 def restore_plan():
     return render_template('restore_plan.html')
 
 
-# Check if the name and the event key match the data in the collection
+"""
+This function checks if the collection is found by the organizer name and
+the event key, in the restore data page.
+
+If the data is found, it returns a template that shows the options for editting.
+If it's not found, it returns an error message to display for the user.
+"""
 @app.route('/restore_data', methods=["POST"])
 def restore_data():
     organizer_name = request.form["organizer_name"]
@@ -163,7 +198,10 @@ def restore_data():
                                event_key=event_key)
 
 
-# Render the page for editing the existing plan from restore page
+"""
+This function checks if the collection that holds event details is found by the
+ organizer name and the event key.
+"""
 @app.route('/change_plan/<plan_id>')
 def change_plan(plan_id):
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
@@ -179,7 +217,9 @@ def change_plan(plan_id):
                                plan_id=the_plan['_id'])
 
 
-# Edit the existing plan from restore page
+"""
+The function update the existing event from restored page.
+"""
 @app.route('/edit_yourplan/<plan_id>', methods=["POST"])
 def edit_yourplan(plan_id):
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
@@ -210,7 +250,9 @@ def edit_yourplan(plan_id):
     return render_template('after_updating_plan.html', plan_id=plan_id)
 
 
-# Render the page for updating participants from restore page
+"""
+The function renders a pafe for updating participants from restore page
+"""
 @app.route('/see_plan_from_restore/<plan_id>')
 def see_plan_from_restore(plan_id):
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
@@ -229,7 +271,9 @@ def see_plan_from_restore(plan_id):
                                suggestion_word=suggestion_word)
 
 
-# Delete a plan that 
+"""
+This function enables users to delete a collection
+"""
 @app.route('/delete_plan/<plan_id>')
 def delete_plan(plan_id):
     mongo.db.plans.remove({'_id': ObjectId(plan_id)})
