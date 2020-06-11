@@ -11,6 +11,7 @@
           action="{{ url_for('update_details', plan_id = plan_id) }}"
           method="POST"
           class="needs-validation"
+          novalidate
         >
           <div class="contact-form">
             <div class="form-row row-form-adjust">
@@ -28,9 +29,9 @@
                   required
                   readonly
                 />
-                <p class="invalid-feedback">
+                <span class="invalid-feedback">
                   Please input organizer's name.
-                </p></span
+                </span></span
               >
             </div>
             <div class="form-row row-form-adjust">
@@ -47,9 +48,9 @@
                   value="{{the_plan.event_name}}"
                   required
                 />
-                <p class="invalid-feedback">
+                <span class="invalid-feedback">
                   Please input organizer's name.
-                </p></span
+                </span></span
               >
             </div>
             <div class="form-row row-form-adjust">
@@ -66,9 +67,9 @@
                 >
 {{the_plan.event_description}}</textarea
                 >
-                <p class="invalid-feedback">
+                <span class="invalid-feedback">
                   Please input an event description.
-                </p>
+                </span>
               </span>
             </div>
             <div class="form-row row-form-adjust container_avail">
@@ -108,9 +109,9 @@
                   />
                 </div>
                 {% endif %}
-                <p class="invalid-feedback">
+                <span class="invalid-feedback">
                   Please input an availability.
-                </p>
+                </span>
               </div>
               <div class="col-sm-12">
                 <p class="text-right add_more" id="addavail_button">
@@ -133,9 +134,9 @@
                     value="{{ the_plan.event_place }}"
                     required
                   />
-                  <p class="invalid-feedback">
+                  <span class="invalid-feedback">
                     Please input a place.
-                  </p>
+                  </span>
                 </div>
               </div>
             </div>

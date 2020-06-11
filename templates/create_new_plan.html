@@ -11,6 +11,7 @@
           action="{{ url_for('update_details', organizer_name=organizer_name, plan_id = plan_id) }}"
           method="POST"
           class="needs-validation"
+          novalidate
         >
           <div class="contact-form">
             <div class="form-row row-form-adjust">
@@ -23,14 +24,14 @@
                   type="text"
                   class="form-control form-valid"
                   name="organizer_name"
-                  value="{{organizer_name}}"
                   aria-invalid="false"
-                  required
+                  value="{{organizer_name}}"
+                  required="required"
                   readonly
                 />
-                <p class="invalid-feedback">
+                <span class="invalid-feedback">
                   Please input organizer's name.
-                </p></span
+                </span></span
               >
             </div>
             <div class="form-row row-form-adjust">
@@ -44,11 +45,11 @@
                   class="form-control form-valid"
                   name="event_name"
                   aria-invalid="false"
-                  required
+                  required="required"
                 />
-                <p class="invalid-feedback">
-                  ´ Please input organizer's name.
-                </p></span
+                <span class="invalid-feedback">
+                  Please input organizer's name.
+                </span></span
               >
             </div>
             <div class="form-row row-form-adjust">
@@ -61,11 +62,12 @@
                   class="form-control form-valid"
                   rows="5"
                   name="event_description"
-                  required
+                  aria-invalid="false"
+                  required="required"
                 ></textarea>
-                <p class="invalid-feedback">
+                <span class="invalid-feedback">
                   Please input an event description.
-                </p>
+                </span>
               </span>
             </div>
             <div class="form-row row-form-adjust container_avail">
@@ -78,12 +80,12 @@
                   <input
                     type="text"
                     class="form-control avail_picker form-valid"
+                    aria-invalid="false"
                     name="availability_0"
-                    required
                   />
-                  <p class="invalid-feedback">
+                  <span class="invalid-feedback">
                     Please input an availability.
-                  </p>
+                  </span>
                 </div>
               </div>
               <div class="col-sm-12">
@@ -104,11 +106,11 @@
                     class="form-control event_place form-valid"
                     name="event_place"
                     aria-invalid="false"
-                    required
+                    required="required"
                   />
-                  <p class="invalid-feedback">
+                  <span class="invalid-feedback">
                     Please input a place.
-                  </p>
+                  </span>
                 </div>
               </div>
             </div>
