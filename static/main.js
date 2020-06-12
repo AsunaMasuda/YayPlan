@@ -1,8 +1,9 @@
 $(document).ready(function () {
+  /*jshint esversion: 6 */
 
-  // Add more date in create_new_plan.html
+  // Add more dates in create_new_plan.html
   /**
-   * This function adds more options for date
+   * This function adds more options of dates in create_new_plan.html
    * @constructor
    */
   $("#addavail_button").on("click", function () {
@@ -18,7 +19,7 @@ $(document).ready(function () {
       $(".element_avail:last").after(
         `<div class="element_avail" id="addavail_` + next_index + `"></div>`
       );
-
+      // Add a set of input and a remove button to the container created above
       $("#addavail_" + next_index)
         .append(
           `<div class="row"><div class="col-sm-9"><input type="text" class="form-control avail_picker form-valid" name="availability_` +
@@ -32,17 +33,16 @@ $(document).ready(function () {
     }
   });
 
-  // Remove element
+  // Remove button - this removes the added container
   $(".container").on("click", ".remove_avail_button", function () {
     let remove_id = this.id;
     let split_id = remove_id.split("_");
     let removeindex = split_id[1];
 
-    if (removeindex > 0){
-        $("#addavail_" + removeindex).remove();
-    }   
-    else {
-    pass
+    if (removeindex > 0) {
+      $("#addavail_" + removeindex).remove();
+    } else {
+      pass;
     }
   });
 
@@ -51,14 +51,13 @@ $(document).ready(function () {
    * This function enables flatpickr
    * @constructor
    */
-  const fpConf = {
+  let fpConf = {
     altInput: true,
     altFormat: "F j, Y",
     dateFormat: "Y-m-d",
   };
 
   flatpickr(".avail_picker", fpConf);
-
 
   // Validation
   /**
@@ -71,9 +70,9 @@ $(document).ready(function () {
       "load",
       function () {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName("needs-validation");
+        let forms = document.getElementsByClassName("needs-validation");
         // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (form) {
+        let validation = Array.prototype.filter.call(forms, function (form) {
           form.addEventListener(
             "submit",
             function (event) {
@@ -93,7 +92,7 @@ $(document).ready(function () {
 
   // Add one more participant
   /**
-   * This function adds more options for date and time
+   * This function adds one more participant in update_plan_participants.html
    * @constructor
    */
   $(".participant_add").on("click", function () {
@@ -103,16 +102,18 @@ $(document).ready(function () {
     let split_id = lastid.split("_");
     let next_index = Number(split_id[1]) + 1;
 
-    // Adding new div container after last occurance of element class
+    // Adding new div container after the last parcipant
     $(".participant_count:last").after(
       `<tr class="participant_count" id="participant_` + next_index + `"></tr>`
     );
 
-    // Finding total number of availability in the data base
+    // Get the number of suggested dates
     let element_avail_num = document.getElementsByClassName("avail").length;
+
+    // Create a component that holds options for availabilities
     let html_isert_td_all = "";
     for (let i = 1; i <= element_avail_num; i++) {
-      html_isert_td =
+      let html_isert_td =
         `<td><select class="select_avail" name="participant_` +
         next_index +
         `_availability_` +
@@ -121,6 +122,7 @@ $(document).ready(function () {
       html_isert_td_all += html_isert_td;
     }
 
+    // Add a component for name, availabilities, note, edit button and remove button
     $("#participant_" + next_index).append(
       `<td><input type="text" class="form-control" name="participant_` +
         next_index +
@@ -132,18 +134,17 @@ $(document).ready(function () {
     );
   });
 
-  // Remove element
+  // Button for removing a participant
   $(".container").on("click", ".participant_remove", function () {
     let remove_id = this.id;
     let split_id = remove_id.split("_");
     let removeindex = split_id[1];
-
     $("#participant_" + removeindex).remove();
   });
 
   // Edit existing participant data
   /**
-   * This function enables users to change the existing data
+   * This function enables users to edit the existing data
    * @constructor
    */
   $(".button_edit").on("click", function () {
@@ -156,7 +157,7 @@ $(document).ready(function () {
     let element_avail_num = document.getElementsByClassName("avail").length;
     let html_isert_td_all = "";
     for (let i = 1; i <= element_avail_num; i++) {
-      html_isert_td =
+      let html_isert_td =
         `<td><select class="select_avail" form="form2" name="availability_` +
         i.toString() +
         `"><option value="Yes">Yes</option><option value="No">No</option><option value="Maybe">Maybe</option></select></td>`;
@@ -190,7 +191,7 @@ $(document).ready(function () {
     let num_no = 0;
     let num_maybe = 0;
     let test_variable = ".avail_num_" + i.toString();
-    class_name_availability = "availability_" + i.toString();
+    let class_name_availability = "availability_" + i.toString();
     let valueArray = document.getElementsByClassName(class_name_availability);
     for (let n = 0; n < element_participant_num; n++) {
       if (valueArray[n].innerHTML.includes("Yes")) {
@@ -219,17 +220,17 @@ $(document).ready(function () {
  * @constructor
  */
 function myFunction() {
-  /* Get the text field */
-  var copyText = document.getElementById("copy_link_url");
+  //  Get the text field
+  let copyText = document.getElementById("copy_link_url");
 
-  /* Select the text field */
+  //  Select the text field
   copyText.select();
   copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 
-  /* Copy the text inside the text field */
+  //  Copy the text inside the text field
   document.execCommand("copy");
 
-  /* display the text "copied successfully" */
+  //  display the text "copied successfully"
   $(".copied_successfully").css("color", "black");
   let textReplace = $(".copied_successfully").text();
   let result = textReplace.replace(".", "Copied successfully!");
