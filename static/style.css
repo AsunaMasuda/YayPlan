@@ -3,7 +3,8 @@ html {
 }
 
 body {
-  font-family: Open Sans, Helvetica Neue, Noto Serif SC, Arial, Helvetica,"sans-serif" !important;
+  font-family: Open Sans, Helvetica Neue, Noto Serif SC, Arial, Helvetica,
+    "sans-serif" !important;
   color: #363636;
 }
 
@@ -20,9 +21,9 @@ select:active {
 .button_submit:focus,
 .button_submit:hover,
 .participant_delete_from_DB:focus,
-.participant_delete_from_DB:hover{
-    color: #fff!important;
-    text-decoration: none!important;
+.participant_delete_from_DB:hover {
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 #mainpage {
@@ -99,7 +100,6 @@ table {
 }
 
 /*---- Main Page */
-
 .masthead {
   padding: 100px 30px;
   height: 80vh;
@@ -197,13 +197,13 @@ table {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
   .top_image {
     display: none;
   }
 
   .step_container {
-    padding: 1rem 1rem;
+    padding: 1.5rem 1rem;
   }
 }
 
@@ -506,7 +506,7 @@ span {
 }
 
 .hidden_table_row td {
-    padding: 0!important;
+  padding: 0 !important;
 }
 
 @media (max-width: 576px) {
