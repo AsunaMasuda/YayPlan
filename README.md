@@ -25,7 +25,7 @@ To use this app, you simply follow these three steps.
         - [Page for participants](#page-for-participants)
         - [Page for restoring an existing plan](#page-for-restoring-an-existing-plan)
     - [Features Left to Implement](#features-left-to-implement)
-        - [Delete the data in the database](#delete-the-data-in-the database)
+        - [Delete the data in the database](#delete-the-data-in-the-database)
     - [Defensive Design](#defensive-design)
 
 3. [Information Architecture](#information-architecture)
@@ -162,6 +162,9 @@ Testing was done throughout the application being built. This application is bui
 ### Bugs
 - In a page for creating a new event(create_new_plan.html), if users added many availability empty input forms at the same time and remove a input form randomly, the date was not correctly updated into MongoDB collection.
 - In a page for registering participants(update_plan_participants.html), when participants use identical names and they edit or delete their information, the change is refrected to the both input.
+
+#### Browser Compatibility
+- Safari: The css styling for a delete button in the Modal window in restored_data.html was not working in Safari. It was caused by `type="button"` in the anchor tag that works as the delete button, and after deleting `type="button"` it started working as expected.
 
 ### How User Stories Needs Were Met
 - to be updated
