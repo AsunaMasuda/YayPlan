@@ -152,7 +152,10 @@ $(document).ready(function () {
       .parent()
       .parent()
       .find(".participant_name")
-      .text();
+      .text()
+      .trim();
+
+    console.log(name_clicked)
 
     let element_avail_num = document.getElementsByClassName("avail").length;
     let html_isert_td_all = "";
@@ -165,11 +168,10 @@ $(document).ready(function () {
     }
 
     let insert_html =
-      `<tr><td><input type="text" class="form-control" name="edit_name" value=` +
+      `<tr><td><input type="text" class="form-control" name="edit_name" value="` + name_clicked +
+      `" form="form3" readonly/><input type="hidden" name="edit_name" value="` +
       name_clicked +
-      ` form="form3" readonly/><input type="hidden" name="edit_name" value=` +
-      name_clicked +
-      ` form="form2" readonly/></td>` +
+      `" form="form2" readonly/></td>` +
       html_isert_td_all +
       `<td><textarea class="form-control" rows="1" name="participant_note" form="form2"></textarea></td><td><input type="submit" class="participant_schedule_button" form="form2" value="Save"/></td><td><button class="participant_delete_from_DB" type="button" data-toggle="modal" data-target="#myModal">Delete Data</button></td></tr>`;
 
