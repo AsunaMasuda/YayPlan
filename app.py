@@ -232,6 +232,32 @@ def change_plan(plan_id):
                                plan_id=the_plan['_id'])
 
 
+@app.route('/edit_details/<plan_id>', methods=["POST"])
+def edit_details(plan_id):
+    """
+    The function updates event details from restore page.
+    """
+    f = request.form
+    list_avail = []
+    for i in range(0, 6):
+        each_availability = "availability_" + str(i)
+        if each_availability in f.keys():
+            list_avail.append(request.form[each_availability])
+        else:
+            continue
+    the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
+    plans = mongo.db.plans
+    plans.update({'_id': ObjectId(plan_id)},
+                 {'$set': {
+                     'event_name': request.form["event_name"],
+                     'event_description': request.form["event_description"],
+                     'availabilities': list_avail,
+                     'event_place': request.form["event_place"],
+                     'participants': the_plan['participants']
+                 }})
+    return render_template('after_creating_plan.html', plan_id=plan_id)
+
+
 @app.route('/edit_yourplan/<plan_id>', methods=["POST"])
 def edit_yourplan(plan_id):
     """
