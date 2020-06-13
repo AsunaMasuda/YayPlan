@@ -81,13 +81,14 @@ def update_details(plan_id):
     """
     This function adds the details of the event to the collection.
     """
+    f = request.form
     list_avail = []
     for i in range(0, 6):
         each_availability = "availability_" + str(i)
-        try:
+        if each_availability in f.keys():
             list_avail.append(request.form[each_availability])
-        except:
-            break
+        else:
+            continue
     plans = mongo.db.plans
     plans.update({'_id': ObjectId(plan_id)},
                  {'$set': {
@@ -127,20 +128,21 @@ def update_plan_complete(plan_id):
     collection of the event.
     This handles submittions by multiple participants at the same time.
     """
+    f = request.form
     i = 0
     while i < 50:
         i = i + 1
         each_participant = "participant_" + str(i)
-        try:
+        if each_participant in f.keys():
             name_participant = request.form[each_participant]
             dict_avail = []
             for n in range(1, 6):
                 participant_each_availability = "participant_" + \
                     str(i) + "_availability_" + str(n)
-                try:
+                if participant_each_availability in f.keys():
                     dict_avail.append(
                         request.form[participant_each_availability])
-                except:
+                else:
                     break
             the_plan = mongo.db.plans
             the_plan.update({'_id': ObjectId(plan_id)},
@@ -152,7 +154,7 @@ def update_plan_complete(plan_id):
                                         request.form["participant_note"]
                                 }}
                              })
-        except:
+        else:
             continue
 
     return render_template('after_updating_plan.html', plan_id=plan_id)
@@ -218,13 +220,13 @@ def change_plan(plan_id):
     It returns several availabilities if the collection holds the data.
     """
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
-    try:
+    if len(the_plan['availabilities']) > 0:
         range_availability = range(0, len(the_plan['availabilities']))
         return render_template('change_plan.html',
                                the_plan=the_plan,
                                plan_id=the_plan['_id'],
                                range_availability=range_availability)
-    except:
+    else:
         return render_template('change_plan.html',
                                the_plan=the_plan,
                                plan_id=the_plan['_id'])
@@ -233,8 +235,10 @@ def change_plan(plan_id):
 @app.route('/edit_yourplan/<plan_id>', methods=["POST"])
 def edit_yourplan(plan_id):
     """
-    The function updates the existing event from restore page.
+    The function updates participant information in the existing
+    event from restore page.
     """
+    f = request.form
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
     i = 0
     while i < len(the_plan['participants']):
@@ -242,9 +246,9 @@ def edit_yourplan(plan_id):
             dict_avail_edit = []
             for n in range(1, 6):
                 each_availability = "availability_" + str(n)
-                try:
+                if each_availability in f.keys():
                     dict_avail_edit.append(request.form[each_availability])
-                except:
+                else:
                     break
             updating_participant_DB = "participants." + str(i)
 
@@ -271,11 +275,10 @@ def see_plan_from_restore(plan_id):
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
     organizer_name = the_plan['organizer_name']
     event_key = the_plan['event_key']
-    try:
-        the_plan['availabilities']
+    if the_plan['availabilities'] > 0:
         return redirect(url_for('update_plan_participants',
                                 plan_id=plan_id))
-    except:
+    else:
         suggestion_word = "The plan is not set yet. Please go to 'Change Your"\
                           " Plan' link on the left."
         return render_template('restored_data.html',
@@ -290,7 +293,7 @@ def delete_plan(plan_id):
     """
     This function enables users to delete a collection (event).
     """
-    mongo.db.plans.remove({'_id': ObjectId(plan_id)})
+    mongo.db.plans.delete_one({'_id': ObjectId(plan_id)})
     return render_template('after_delete.html')
 
 
