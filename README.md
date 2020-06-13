@@ -1,5 +1,10 @@
 # YayPlan
-[YayPlan](https://yayplan.herokuapp.com/) is a easy schedule planner app which you can use when you want to set up a gathering with your friends and families. 
+[YayPlan](https://yayplan.herokuapp.com/) is a easy schedule planner app which you can use when you want to set up a gathering with your friends and families with a simple and modern user interface.
+
+To use this app, you simply follow these three steps.
+1. Register a name of an event organizer(your name if you are planning an event) and an event key which is used to restore data afterwards.
+2. Set up the event details(event title, description, place) and suggest some dates so participants can vote.
+3. Share the link of the event with participants. In the link, participants can register their availabilities. 
 
 <p align="center"><img src = "https://github.com/AsunaMasuda/MilestoneProject3/blob/master/image_README/responsive_site.png?raw=true" width=900></p>
 
@@ -21,6 +26,7 @@
         - [Page for restoring an existing plan](#page-for-restoring-an-existing-plan)
     - [Features Left to Implement](#features-left-to-implement)
         - [Delete the data in the database](#delete-the-data-in-the database)
+    - [Defensive Design](#defensive-design)
 
 3. [Information Architecture](#information-architecture)
 
@@ -49,7 +55,17 @@ The user goal is to have:
 - A flexibility to modify the details of the plan and the number of participants
 
 ## User Stories
-As a user of YayPlan, I can edit the plan anytime and invite as many as people to register their schedule, so that I don't need to set up again from scratch when there is any change in the plan or the participants.
+#### As an organizer for an event,
+- I would like to have a simple functionality to set up an event without any registration. 
+- I would like to edit the details of the plan anytime when any change happened. 
+- I would like to avoid from setting up the number of participants when setting up, since it can be changed as the situation changes. 
+- I would like to avoid anybody else from being able to change the details of the event.
+- I would like to see which date is the most suitable to the participants.
+
+####  As a participant for the event,
+- I would like to have multiple choices (Yes/No/Maybe) for the availability.
+- I would like to have an ability to add a note to the organizer, that explains the part the choices cannot address.
+- I would like to have an ability to edit the answers whenever any change is caused.
 
 ## Wireframes
 Wireframes were created with [balsamiq](https://balsamiq.com/).
@@ -82,11 +98,15 @@ Wireframes were created with [balsamiq](https://balsamiq.com/).
 
 ## Features Left to Implement
 ### Delete the data in the database
-- After the data of the event passed, automatically the data is deleted to assure the storage
-- The delete options of participants are managed with an unique delete key associated with each participant for the situation where there are many people use this app
+- After the data of the event passed, automatically the data is deleted to assure the storage.
+- The delete options of participants are managed with an unique delete key associated with each participant for the situation where there are many people use this app.
+
+## Defensive Design
+- All the forms in this site have a validation system and any submission with blank input is prevented and it shows a message to let users know neccessary input sections.  
+- An alert pops up when users pressed a button to delete the event data or the participant data, to prevent users from deleting data by a mistake.
 
 # Information Architecture
-MongoDB Atlas is used for storing data for this web site.
+MongoDB Atlas is used for storing data for this web site. 
 
 The following is the data structure. 
 ```
@@ -108,6 +128,8 @@ The following is the data structure.
 ```
 
 # Technologies Used
+This application contains key CRUD functionalities and they are used to maximize user's experience in this site. The main front end development was created using HTML, CSS, JavaScript and their libraries. The main backend development was powered by Python and Flask.
+
 ### Languages 
 - HTML, CSS, JavaScript, Python
 
@@ -124,6 +146,7 @@ The following is the data structure.
 ### Tools
 - Git/GitHub
 - Gitpod
+- PIP
 - MongoDB Atlas
 
 # Testing
@@ -134,32 +157,60 @@ The following is the data structure.
 - Python: [PEP8 online](http://pep8online.com/)
 
 ### Manual Testing
-I created [a testing matrix]() to make sure the site works as expected in different devices, browsers and screen sizes.
+Testing was done throughout the application being built. This application is built with a mobile first responsive design in mind. I created [this testing matrix]() to make sure the site works as expected in different devices, browsers and screen sizes.
 
 ### Bugs
-- to be updated
+- In a page for creating a new event(create_new_plan.html), if users added many availability empty input forms at the same time and remove a input form randomly, the date was not correctly updated into MongoDB collection.
+- In a page for registering participants(update_plan_participants.html), when participants use identical names and they edit or delete their information, the change is refrected to the both input.
 
 ### How User Stories Needs Were Met
 - to be updated
 
 # Deployment
-To deploy this page to GitHub Pages from my [GitHub repository](https://github.com/AsunaMasuda/Milestoneproject_2), the following steps were taken: 
-1. Log into GitHub. 
-2. From the list of repositories on the screen, select **AsunaMasuda/Milestoneproject_2**.
-3. From the menu items near the top of the page, select **Settings**.
-4. Scroll down to the **GitHub Pages** section.
-5. Under **Source**, click the drop-down menu labelled **None** and select **Master Branch**.
-6. On selecting Master Branch, the page is automatically refreshed, the website is now deployed. 
-7. Scroll back down to the **GitHub Pages** section to retrieve the link to the deployed website.
-
 ## Local Deployment
-To clone this project from GitHub:
+For local deployment, you need to have IDE such as Gitpod and you need to install those followings in your IDE:
+- Git, Python3, PIP3, MongoDB
+
 1. At the top of this repository, click the green button **Clone or download**.
 2. In the Clone with HTTPs section, copy the clone URL for the repository. 
 3. Open your favourite terminal (cmd, powershell, bash, git bash, etc.)
 4. Change the current working directory to the location where you want the cloned directory to be made.
-5. Type `git clone`, and then paste the URL you copied in Step 2.
+5. Type `git clone`, and then paste the URL you copied in Step 2:
+   `git clone https://github.com/AsunaMasuda/MilestoneProject3.git`
 6. Press Enter. Your local clone will be created.
+7. You can either 
+    - Create a virtual environment and create environment variables of IP, PORT, MONGO_URI and SECRET_KEY.
+    - Or edit the app.py file like the following variables:
+        ```
+        'IP', '127.0.0.1'
+        ```
+        ```
+        'PORT', '5000'
+        ```
+        ```
+        'SECRET_KEY', '<somethingsecret>'
+        ```
+        ```
+        'MONGO_URI', 'mongodb+srv://<username>:<password>@<cluster_name>-ocous.mongodb.net/<database_name>?retryWrites=true&w=majority'
+        ```
+8. Install all required modules from requirements.txt with the command`pip3 install -r requirements.txt.`
+9. Now you can run the website with the command `python3 app.py`
+10. You can now access the website at **http://127.0.0.1:5000**
+
+## Heroku Deployment
+This website is deployed on [Heroku](https://www.heroku.com/), following these steps:
+1. Create a requirements.txt file using the command `pip3 freeze > requirements.txt` in the terminal.
+2. Create a Procfile using the commant `echo web: python app.py > Procfile` in the terminal.
+3. Commit and push all the changes to the Github repositoty of this project.
+4. Go to Heroku and create a new app. Set a name for this app and select the closest region.
+5. Choose Deployment method as GitHub in Heroku Dashboard and link the Github repository to the Heroku app.
+6. Go to Settings then Reveal Config Vars in Heroku Dashboard and set values as followings.
+| Key | Value |
+ --- | ---
+IP | 0.0.0.0
+PORT | 5000
+MONGO_URI | `mongodb+srv://<username>:<password>@<cluster_name>-ocous.mongodb.net/<database_name>?retryWrites=true&w=majority`
+SECRET_KEY | `<your_secret_key>`
 
 # Credits
 
@@ -168,15 +219,14 @@ To clone this project from GitHub:
 
 ## Media
 ### Icons
-- to be updated
+- All the icons in this website were provided by [Font Awesomme](https://fontawesome.com/)
 
 ### Images
 - The images used in the home page are created by [pikisuperstar - www.freepik.com](https://www.freepik.com/free-photos-vectors/people)
 
 ### JavaScript
-- [flatpickr - javascript datetime picker](https://github.com/flatpickr/flatpickr)
+- The datetime picker is powered by [flatpickr](https://github.com/flatpickr/flatpickr)
 
 ## Acknowledgements
-
-Thanks to:
-My Code Institute Mentor Guido Cecilio Garcia Bernal for his advise throughout the development process.
+- Thanks to: my Code Institute Mentor Guido Cecilio Garcia Bernal for his advise throughout the development process
+- Code Institute Slack Community that gave a light when I am stuck in my code.
