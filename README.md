@@ -25,7 +25,7 @@ To use this app, you simply follow these three steps.
         - [Page for participants](#page-for-participants)
         - [Page for restoring an existing plan](#page-for-restoring-an-existing-plan)
     - [Features Left to Implement](#features-left-to-implement)
-        - [Delete the data in the database](#delete-the-data-in-the-database)
+        - [Delete the data after the event date is passed](#delete-the-data-after-the-event-date-is-passed)
     - [Defensive Design](#defensive-design)
 
 3. [Information Architecture](#information-architecture)
@@ -35,12 +35,13 @@ To use this app, you simply follow these three steps.
 5. [Testing](#testing)
     - [Manual Testing](#manual-testing)
     - [Bugs](#bugs)
-    - [How User Stories Needs Were Met](#how-user-stories-needs-were-met)
 
 6. [Deployment](#deployment)
     - [Local Deployment](#local-deployment)
+    - [Heroku Deployment](#heroku-deployment)
 
 7. [Credits](#credits)
+
 
 # UX
 ## Goals
@@ -97,9 +98,8 @@ Wireframes were created with [balsamiq](https://balsamiq.com/).
 - This page allows users to enable 1. to edit the existing event data and 2. to get the shareable link with entering the organizer name and the event key which they registered. 
 
 ## Features Left to Implement
-### Delete the data in the database
+### Delete the data after the event date is passed
 - After the data of the event passed, automatically the data is deleted to assure the storage.
-- The delete options of participants are managed with an unique delete key associated with each participant for the situation where there are many people use this app.
 
 ## Defensive Design
 - All the forms in this site have a validation system and any submission with blank input is prevented and it shows a message to let users know neccessary input sections.  
@@ -128,7 +128,7 @@ The following is the data structure.
 ```
 
 # Technologies Used
-This application contains key CRUD functionalities and they are used to maximize user's experience in this site. The main front end development was created using HTML, CSS, JavaScript and their libraries. The main backend development was powered by Python and Flask.
+This application contains key CRUD functionalities and they are used to maximize user's experience in this site. The main frontend development was created using HTML, CSS, JavaScript and their libraries. The main backend development was powered by Python and Flask.
 
 ### Languages 
 - HTML, CSS, JavaScript, Python
@@ -151,23 +151,24 @@ This application contains key CRUD functionalities and they are used to maximize
 
 # Testing
 ### Validation Tools
+I used these validation tools below for each file.
 - HTML: [W3C HTML Validator](https://validator.w3.org/)
 - CSS: [W3C CSS validator](https://jigsaw.w3.org/css-validator/)
 - JavaScript: [JSHint](https://jshint.com/)
 - Python: [PEP8 online](http://pep8online.com/)
 
 ### Manual Testing
-Testing was done throughout the application being built. This application is built with a mobile first responsive design in mind. I created [this testing matrix]() to make sure the site works as expected in different devices, browsers and screen sizes.
+Testing was done throughout the application being built. This application is built with a mobile first responsive design in mind. I created [this testing matrix](https://github.com/AsunaMasuda/MilestoneProject3/blob/master/image_README/test_result.png) to make sure the site works as expected in different devices with the emuration funtion in Google Developer Tool, browsers and screen sizes.
 
 ### Bugs
-- In a page for creating a new event(create_new_plan.html), if users added many availability empty input forms at the same time and remove a input form randomly, the date was not correctly updated into MongoDB collection.
-- In a page for registering participants(update_plan_participants.html), when participants use identical names and they edit or delete their information, the change is refrected to the both input.
+#### Python and Database
+- In the page for creating a new event(create_new_plan.html), if users added many empty availabilities forms at the same time and remove the forms randomly, the date was not correctly updated into MongoDB collection. It was caused by try/except method which I used in order to check if a key for availabilities exists in the request.form MultiDict object. After I replaced try/except method with if/else statement, this bug was fixed.
+
+#### JavaScript
+- In the page for registering participants(update_plan_participants.html), if a participant uses a whitespace in their name, it caused a rendering issue after clicking 'Edit' button. It was caused by whitespaces surrounding the selected name which was created by text() function in JavaScript used to get the text for the name from the HTML. This bug was fixed by using trim() function, which deletes all whitespaces before and after the selected text(in this case, the selected name).
 
 #### Browser Compatibility
 - Safari: The css styling for a delete button in the Modal window in restored_data.html was not working in Safari. It was caused by `type="button"` in the anchor tag that works as the delete button, and after deleting `type="button"` it started working as expected.
-
-### How User Stories Needs Were Met
-- to be updated
 
 # Deployment
 ## Local Deployment
@@ -208,6 +209,7 @@ This website is deployed on [Heroku](https://www.heroku.com/), following these s
 4. Go to Heroku and create a new app. Set a name for this app and select the closest region.
 5. Choose Deployment method as GitHub in Heroku Dashboard and link the Github repository to the Heroku app.
 6. Go to Settings then Reveal Config Vars in Heroku Dashboard and set values as followings.
+
 | Key | Value |
  --- | ---
 IP | 0.0.0.0
