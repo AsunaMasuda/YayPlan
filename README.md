@@ -1,5 +1,5 @@
 # YayPlan
-[YayPlan](https://yayplan.herokuapp.com/) is a easy schedule planner app which you can use when you want to set up a gathering with your friends and families with a simple and modern user interface.
+[YayPlan](https://yayplan.herokuapp.com/) is an easy schedule planner app which you can use when you want to set up a gathering with your friends and families with a simple and modern user interface.
 
 To use this app, you simply follow these three steps.
 1. Register a name of an event organizer(your name if you are planning an event) and an event key which is used to restore data afterwards.
@@ -12,9 +12,10 @@ To use this app, you simply follow these three steps.
 
 1. [UX](#ux)
     - [Goals](#goals)
-        - [User's Goals](#user-goals)
+        - [User Goals](#user-goals)
     - [User Stories](#user-stories)
     - [Wireframes](#wireframes)
+    - [Color Scheme](#color-scheme)
 
 2. [Features](#features)
     - [Existing Features](#existing-features)
@@ -45,28 +46,28 @@ To use this app, you simply follow these three steps.
 
 # UX
 ## Goals
-The goal of this project is to create a web application to enables users to plan an event and schedule the date with participants, with simple steps.
+The goal of this project is to create a web application to enables users to plan an event and its date by following simple steps.
 
-### User's Goals
+### User Goals
 The target audience for this website is:
-- People who want to plan an event and find out the best date for the participants
+- People who want to plan an event and find out the most suitable date for the attendees.
 
 The user goal is to have:
-- A platform that allows them to launch a schedular which is easy to share with participants
-- A flexibility to modify the details of the plan and the number of participants
+- A platform that allows them to launch a schedular which is easy to share with participants.
+- The flexibility to modify the details of the plan and the number of participants.
 
 ## User Stories
 #### As an organizer for an event,
-- I would like to have a simple functionality to set up an event without any registration. 
-- I would like to edit the details of the plan anytime when any change happened. 
-- I would like to avoid from setting up the number of participants when setting up, since it can be changed as the situation changes. 
+- I would like to have a simple interface and functionality to set up an event without any registration. 
+- I would like to edit the details of the plan anytime when any change happens. 
+- I would like to avoid specifying the number of participants when creating the event, since it can be changed as the situation evolves. 
 - I would like to avoid anybody else from being able to change the details of the event.
-- I would like to see which date is the most suitable to the participants.
+- I would like to see which date is the most suitable for the participants.
 
 ####  As a participant for the event,
 - I would like to have multiple choices (Yes/No/Maybe) for the availability.
-- I would like to have an ability to add a note to the organizer, that explains the part the choices cannot address.
-- I would like to have an ability to edit the answers whenever any change is caused.
+- I would like to have the ability to add a note to the organizer, which allows me to add additional context to availability option which I selected.
+- I would like to have the ability to edit the answers whenever any change might happen.
 
 ## Wireframes
 Wireframes were created with [balsamiq](https://balsamiq.com/).
@@ -74,36 +75,44 @@ Wireframes were created with [balsamiq](https://balsamiq.com/).
 - [Create plan page](https://github.com/AsunaMasuda/MilestoneProject3/blob/master/image_README/create-plan.png)
 - [Update participant page](https://github.com/AsunaMasuda/MilestoneProject3/blob/master/image_README/update-participants.png)
 
+## Color Scheme
+- As the illustrations used on main pages had some modern aesthetics of colors, as well as it's important to limit the total numbers of primary colors, I decided to use similar colors to the illustrations as the primary colors for this site.
+1. ![#363636](https://via.placeholder.com/15/363636/000000?text=+) `#363636`: Letters
+2. ![#fff](https://via.placeholder.com/15/fff/000000?text=+) `#fff`: Background color
+3. ![#ff6666](https://via.placeholder.com/15/ff6666/000000?text=+) `#ff6666`: Button elements
+4. ![#bb7cfe](https://via.placeholder.com/15/bb7cfe/000000?text=+) `#bb7cfe`: Hovering over link elememts
+5. ![#1abc9b](https://via.placeholder.com/15/1abc9b/000000?text=+) `#1abc9b`: Input Fields, Icons, Datepicker element
+
 # Features
 
 ## Existing Features
 ### Home page
-- This page is used as a landing page. It contains "how it works" section and a "Get started" button to start the planning. 
+- This page is used as a landing page. It contains a "How It Works" section and a "Get Started" button to start the planning. 
 
 ### Page for registering a name and an event key
-- Users register their name (organizer's name) and an event key. Event keys are used to restore the data when there is any change happened in the event, restore the shareable link for participants and delete the event itself, if they wish.
+- Users register their name (organizer's name) and an event key. Event keys are used to restore the data when there is any change they need to make to the event, or if they need to restore the shareable link for participants or even delete the event itself.
 - This page also checks if the combination of the name and the event key input is available or not.
 
 ### Page for registering details of the event
-- Users can set up the details(event title, description, date, place) of the event in this page. They can set up multiple dates so the participants can answer when they are available.
+- Users can set up the details (event title, description, date, place) of the event in this page. They can set up multiple dates so the participants can answer when they are available.
 
 ### Page for getting a shareable link
-- This page comes up after completing registering the details and provides the shareable link with participants.
+- This page comes up after completing the registration of the event details and provides the shareable link with participants.
 
 ### Page for participants
-- This page allows participants can add their name, availabilities(Yes/No/Maybe) and a note. 
-- Participants can edit their answers and also delete the data in this page. This app is made for the situation shere they No key is required to edit or delete the participant schedule. 
+- This page allows participants to add their name, availability (Yes/No/Maybe) and a note. 
+- Participants can edit their answers and also delete the data in this page. 
 
 ### Page for restoring an existing plan
-- This page allows users to enable 1. to edit the existing event data and 2. to get the shareable link with entering the organizer name and the event key which they registered. 
+- This page allows users to: 1. Edit the existing event data 2. Get the shareable link by entering the organizer name and the event key which they registered. 
 
 ## Features Left to Implement
 ### Delete the data after the event date is passed
-- After the data of the event passed, automatically the data is deleted to assure the storage.
+- After the date of the event has passed, the data is automatically deleted for storage purposes.
 
 ## Defensive Design
-- All the forms in this site have a validation system and any submission with blank input is prevented and it shows a message to let users know neccessary input sections.  
-- An alert pops up when users pressed a button to delete the event data or the participant data, to prevent users from deleting data by a mistake.
+- All the forms in this site have a validation system and any submission with blank input is prevented. It displays a message to let users know neccessary input sections which are empty.  
+- An alert pops up when users press a button to delete the event data or the participant data, to prevent users from deleting data by mistake.
 
 # Information Architecture
 MongoDB Atlas is used for storing data for this web site. 
@@ -162,17 +171,17 @@ Testing was done throughout the application being built. This application is bui
 
 ### Bugs
 #### Python and Database
-- In the page for creating a new event(create_new_plan.html), if users added many empty availabilities forms at the same time and remove the forms randomly, the date was not correctly updated into MongoDB collection. It was caused by try/except method which I used in order to check if a key for availabilities exists in the request.form MultiDict object. After I replaced try/except method with if/else statement, this bug was fixed.
+- In the page for creating a new event(create_new_plan.html), if users added many empty availabilities forms at the same time and remove the forms randomly, the date was not correctly updated in the MongoDB collection. It was caused by the try/except method which I used in order to check if a key for availabilities exists in the request.form MultiDict object. After I replaced the try/except method with if/else statement, this bug was fixed.
 
 #### JavaScript
-- In the page for registering participants(update_plan_participants.html), if a participant uses a whitespace in their name, it caused a rendering issue after clicking 'Edit' button. It was caused by whitespaces surrounding the selected name which was created by text() function in JavaScript used to get the text for the name from the HTML. This bug was fixed by using trim() function, which deletes all whitespaces before and after the selected text(in this case, the selected name).
+- In the page for registering participants(update_plan_participants.html), if a participant uses a whitespace in their name, it caused a rendering issue after clicking 'Edit' button. It was caused by whitespaces surrounding the selected name which was created by text() function in JavaScript used to get the text for the name from the HTML. This bug was fixed by using the trim() function, which deletes all whitespaces before and after the selected text(in this case, the selected name).
 
 #### Browser Compatibility
 - Safari: The css styling for a delete button in the Modal window in restored_data.html was not working in Safari. It was caused by `type="button"` in the anchor tag that works as the delete button, and after deleting `type="button"` it started working as expected.
 
 # Deployment
 ## Local Deployment
-For local deployment, you need to have IDE such as Gitpod and you need to install those followings in your IDE:
+For local deployment, you need to have an IDE such as Gitpod and you need to install the following in your IDE:
 - Git, Python3, PIP3, MongoDB
 
 1. At the top of this repository, click the green button **Clone or download**.
@@ -197,7 +206,7 @@ For local deployment, you need to have IDE such as Gitpod and you need to instal
         ```
         'MONGO_URI', 'mongodb+srv://<username>:<password>@<cluster_name>-ocous.mongodb.net/<database_name>?retryWrites=true&w=majority'
         ```
-8. Install all required modules from requirements.txt with the command`pip3 install -r requirements.txt.`
+8. Install all required modules from requirements.txt with the command`pip3 install -r requirements.txt`
 9. Now you can run the website with the command `python3 app.py`
 10. You can now access the website at **http://127.0.0.1:5000**
 
@@ -208,7 +217,7 @@ This website is deployed on [Heroku](https://www.heroku.com/), following these s
 3. Commit and push all the changes to the Github repositoty of this project.
 4. Go to Heroku and create a new app. Set a name for this app and select the closest region.
 5. Choose Deployment method as GitHub in Heroku Dashboard and link the Github repository to the Heroku app.
-6. Go to Settings then Reveal Config Vars in Heroku Dashboard and set values as followings.
+6. Go to Settings then Reveal Config Vars in Heroku Dashboard and set the values as follows:
 
 | Key | Value |
  --- | ---
@@ -224,14 +233,17 @@ SECRET_KEY | `<your_secret_key>`
 
 ## Media
 ### Icons
-- All the icons in this website were provided by [Font Awesomme](https://fontawesome.com/)
+- All the icons in this website were provided by [Font Awesomme](https://fontawesome.com/).
 
 ### Images
-- The images used in the home page are created by [pikisuperstar - www.freepik.com](https://www.freepik.com/free-photos-vectors/people)
+- The images used in the home page are created by [pikisuperstar - www.freepik.com](https://www.freepik.com/free-photos-vectors/people).
+
+### UX
+- I used this article as reference when deciding the color scheme. [7 Tips To Organize Colors for UI Design](https://uxplanet.org/7-tips-to-organize-colors-for-ui-design-97bbefed8a8a)
 
 ### JavaScript
-- The datetime picker is powered by [flatpickr](https://github.com/flatpickr/flatpickr)
+- The datetime picker is powered by [flatpickr](https://github.com/flatpickr/flatpickr).
 
 ## Acknowledgements
-- Thanks to: my Code Institute Mentor Guido Cecilio Garcia Bernal for his advise throughout the development process
-- Code Institute Slack Community that gave a light when I am stuck in my code.
+- Thanks to: my Code Institute Mentor Guido Cecilio Garcia Bernal for his advice throughout the development process.
+- Code Institute Slack Community that gave me a light when I was stuck in my coding.
