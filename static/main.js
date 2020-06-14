@@ -22,11 +22,14 @@ $(document).ready(function () {
       // Add a set of input and a remove button to the container created above
       $("#addavail_" + next_index)
         .append(
-          `<div class="row"><div class="col-sm-9"><input type="text" class="form-control avail_picker form-valid" name="availability_` +
+          `<div class="row">
+          <div class="col-sm-9"><input type="text" class="form-control avail_picker form-valid" name="availability_` +
             next_index +
-            `"></div><div class="col-sm-3 my-auto"><span id="removeavail_` +
+            `"></div>
+            <div class="col-sm-3 my-auto"><span id="removeavail_` +
             next_index +
-            `" class="remove_avail_button">Remove</span></div></div>`
+            `" class="remove_avail_button">Remove</span></div>
+            </div>`
         )
         .find(".avail_picker")
         .flatpickr(fpConf);
@@ -114,11 +117,16 @@ $(document).ready(function () {
     let html_isert_td_all = "";
     for (let i = 1; i <= element_avail_num; i++) {
       let html_isert_td =
-        `<td><select class="select_avail" name="participant_` +
+        `<td>
+        <select class="select_avail" name="participant_` +
         next_index +
         `_availability_` +
         i.toString() +
-        `" form="form1"><option value="Yes">Yes</option><option value="No">No</option><option value="Maybe">Maybe</option></select></td>`;
+        `" form="form1">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Maybe">Maybe</option></select>
+        </td>`;
       html_isert_td_all += html_isert_td;
     }
 
@@ -128,9 +136,11 @@ $(document).ready(function () {
         next_index +
         `" form="form1" required/></td>` +
         html_isert_td_all +
-        `<td><textarea class="form-control" rows="1" name="participant_note" form="form1"></textarea></td><td><button id ="removeparticipant_` +
+        `<td><textarea class="form-control" rows="1" name="participant_note" form="form1"></textarea></td>
+        <td><button id ="removeparticipant_` +
         next_index +
-        `" class="participant_remove">Remove</button></td><td></td>`
+        `" class="participant_remove">Remove</button></td>
+        <td></td>`
     );
   });
 
@@ -155,8 +165,6 @@ $(document).ready(function () {
       .text()
       .trim();
 
-    console.log(name_clicked)
-
     let element_avail_num = document.getElementsByClassName("avail").length;
     let html_isert_td_all = "";
     for (let i = 1; i <= element_avail_num; i++) {
@@ -173,7 +181,9 @@ $(document).ready(function () {
       name_clicked +
       `" form="form2" readonly/></td>` +
       html_isert_td_all +
-      `<td><textarea class="form-control" rows="1" name="participant_note" form="form2"></textarea></td><td><input type="submit" class="participant_schedule_button" form="form2" value="Save"/></td><td><button class="participant_delete_from_DB" type="button" data-toggle="modal" data-target="#myModal">Delete Data</button></td></tr>`;
+      `<td><textarea class="form-control" rows="1" name="participant_note" form="form2"></textarea></td>
+      <td><input type="submit" class="participant_schedule_button" form="form2" value="Save"/></td>
+      <td><button class="participant_delete_from_DB" type="button" data-toggle="modal" data-target="#myModal">Delete Data</button></td></tr>`;
 
     $(this).parent().parent().replaceWith(insert_html);
   });
