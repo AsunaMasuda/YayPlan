@@ -83,7 +83,7 @@ def update_details(plan_id):
     """
     f = request.form
     list_avail = []
-    for i in range(0, 6):
+    for i in range(0, 15):
         each_availability = "availability_" + str(i)
         if each_availability in f.keys():
             list_avail.append(request.form[each_availability])
@@ -239,7 +239,7 @@ def edit_details(plan_id):
     """
     f = request.form
     list_avail = []
-    for i in range(0, 6):
+    for i in range(0, 15):
         each_availability = "availability_" + str(i)
         if each_availability in f.keys():
             list_avail.append(request.form[each_availability])
