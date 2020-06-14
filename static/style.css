@@ -198,12 +198,15 @@ table {
 }
 
 @media (max-width: 1200px) {
-  .top_image {
-    display: none;
-  }
 
   .step_container {
     padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .top_image {
+    display: none;
   }
 }
 
