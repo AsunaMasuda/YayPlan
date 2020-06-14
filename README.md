@@ -79,8 +79,8 @@ Wireframes were created with [balsamiq](https://balsamiq.com/).
 - As the illustrations used on main pages had some modern aesthetics of colors, as well as it's important to limit the total numbers of primary colors, I decided to use similar colors to the illustrations as the primary colors for this site.
 1. ![#363636](https://via.placeholder.com/15/363636/000000?text=+) `#363636`: Letters
 2. ![#fff](https://via.placeholder.com/15/fff/000000?text=+) `#fff`: Background color
-3. ![#ff6666](https://via.placeholder.com/15/ff6666/000000?text=+) `#ff6666`: Button elements
-4. ![#bb7cfe](https://via.placeholder.com/15/bb7cfe/000000?text=+) `#bb7cfe`: Hovering over link elememts
+3. ![#ff6666](https://via.placeholder.com/15/ff6666/000000?text=+) `#ff6666`: Hovering over link elememts
+4. ![#bb7cfe](https://via.placeholder.com/15/bb7cfe/000000?text=+) `#bb7cfe`: Button elements
 5. ![#1abc9b](https://via.placeholder.com/15/1abc9b/000000?text=+) `#1abc9b`: Input Fields, Icons, Datepicker element
 
 # Features
@@ -233,7 +233,7 @@ SECRET_KEY | `<your_secret_key>`
 
 ## Media
 ### Icons
-- All the icons in this website were provided by [Font Awesomme](https://fontawesome.com/).
+- All the icons in this website were provided by [Font Awesome](https://fontawesome.com/).
 
 ### Images
 - The images used in the home page are created by [pikisuperstar - www.freepik.com](https://www.freepik.com/free-photos-vectors/people).
