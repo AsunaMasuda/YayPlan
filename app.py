@@ -301,7 +301,7 @@ def see_plan_from_restore(plan_id):
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
     organizer_name = the_plan['organizer_name']
     event_key = the_plan['event_key']
-    if the_plan['availabilities'] > 0:
+    if len(the_plan['availabilities']) > 0:
         return redirect(url_for('update_plan_participants',
                                 plan_id=plan_id))
     else:
