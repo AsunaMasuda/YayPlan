@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="This is a schedular app where users can schedule an event with friends and families."
+    />
+    <meta name="author" content="Asuna Masuda" />
 
     <!-- Bootstrap & CSS -->
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
@@ -25,6 +30,13 @@
     <link
       rel="stylesheet"
       href="https://npmcdn.com/flatpickr/dist/themes/material_green.css"
+    />
+
+    <!-- Title Icon -->
+    <link
+      rel="icon"
+      href="{{url_for('static', filename='/img/' + 'time.png')}}"
+      type="image/x-icon"
     />
 
     <title>YayPlan</title>

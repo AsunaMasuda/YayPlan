@@ -1,147 +1,118 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="plan_body">
-	<div class="container">
-		<div class="event_details text-center">
-			<h2 class="event_detail_text">
-				<i class="fas fa-chess-queen icon_creat_plan"></i>&nbsp;&nbsp;{{
-        the_plan.event_name }}
-			</h2>
-			<span class="event_detail_text">
-        <i class="fas fa-user-alt icon_creat_plan"></i>&nbsp;&nbsp;Planned by {{
-        the_plan.organizer_name }} </span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			<span class="event_detail_text">
-        <i class="fas fa-map-marker-alt icon_creat_plan"></i>&nbsp;&nbsp;{{
-        the_plan.event_place }}
-      </span>
-			<h5 class="event_detail_text">
-				<i class="fas fa-info-circle icon_creat_plan"></i>&nbsp;&nbsp;{{
-        the_plan.event_description }}
-			</h5>
-		</div>
+    <div class="container">
+        <div class="event_details text-center">
+            <h2 class="event_detail_text"><i class="fas fa-chess-queen icon_creat_plan"></i>&nbsp;&nbsp;{{ the_plan.event_name }}</h2>
+            <span class="event_detail_text"> <i class="fas fa-user-alt icon_creat_plan"></i>&nbsp;&nbsp;Planned by {{ the_plan.organizer_name }} </span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="event_detail_text"> <i class="fas fa-map-marker-alt icon_creat_plan"></i>&nbsp;&nbsp;{{ the_plan.event_place }} </span>
+            <h5 class="event_detail_text"><i class="fas fa-info-circle icon_creat_plan"></i>&nbsp;&nbsp;{{ the_plan.event_description }}</h5>
+        </div>
 
-		<form action="{{ url_for('update_plan_complete', plan_id = plan_id) }}" method="POST" id="form1"></form>
-		<form action="{{ url_for('edit_yourplan', plan_id = plan_id) }}" method="POST" id="form2"></form>
-		<form action="{{ url_for('delete_participant', plan_id = plan_id) }}" method="POST" id="form3"></form>
+        <form action="{{ url_for('update_plan_complete', plan_id = plan_id) }}" method="POST" id="form1"></form>
+        <form action="{{ url_for('edit_yourplan', plan_id = plan_id) }}" method="POST" id="form2"></form>
+        <form action="{{ url_for('delete_participant', plan_id = plan_id) }}" method="POST" id="form3"></form>
 
-		<div class="row">
-			<div class="col-sm-12 container">
-				<div class="hscroll">
-					<table class="table text-center">
-						<thead class="element_participant">
-							<tr class="element_avail_num">
-								<th scope="col" class="vertical-align-middle">Name</th>
-								{% for avail in range_availability %}
-								<th scope="col" class="avail vertical-align-middle">
-									{{ the_plan.availabilities[avail] }}
-								</th>
-								{% endfor %}
-								<th scope="col" class="vertical-align-middle">Note</th>
-								<th scope="col"></th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
+        <div class="row">
+            <div class="col-sm-12 container">
+                <div class="hscroll">
+                    <table class="table text-center">
+                        <thead class="element_participant">
+                            <tr class="element_avail_num">
+                                <th scope="col" class="vertical-align-middle">Name</th>
+                                {% for avail in range_availability %}
+                                <th scope="col" class="avail vertical-align-middle">
+                                    {{ the_plan.availabilities[avail] }}
+                                </th>
+                                {% endfor %}
+                                <th scope="col" class="vertical-align-middle">Note</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
 
-						<tbody>
-							<tr class="element_avail_num">
-								<td class="vertical-align-middle"></td>
-								{% for avail in range_availability %}
-								<td class="vertical-align-middle">
-									<div class="avail_num_{{avail}}"></div>
-								</td>
-								{% endfor %}
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
+                        <tbody>
+                            <tr class="element_avail_num">
+                                <td class="vertical-align-middle"></td>
+                                {% for avail in range_availability %}
+                                <td class="vertical-align-middle">
+                                    <div class="avail_num_{{avail}}"></div>
+                                </td>
+                                {% endfor %}
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
 
-							<tr class="participant_count hidden_table_row" id="participant_0">
-								<td class="hidden_table_row"></td>
-								{% for avail in range_availability %}
-								<td class="hidden_table_row"></td>
-								{% endfor %}
-								<td class="hidden_table_row"></td>
-								<td class="hidden_table_row"></td>
-								<td class="hidden_table_row"></td>
-							</tr>
-							{% for num_participant in range_participant %}
-							<tr class="participant_count border_bottom" id="participant_{{num_participant}}">
-								<th class="participant_name vertical-align-middle">
-									{{ the_plan.participants[num_participant].name }}
-								</th>
+                            <tr class="participant_count hidden_table_row" id="participant_0">
+                                <td class="hidden_table_row"></td>
+                                {% for avail in range_availability %}
+                                <td class="hidden_table_row"></td>
+                                {% endfor %}
+                                <td class="hidden_table_row"></td>
+                                <td class="hidden_table_row"></td>
+                                <td class="hidden_table_row"></td>
+                            </tr>
+                            {% for num_participant in range_participant %}
+                            <tr class="participant_count border_bottom" id="participant_{{num_participant}}">
+                                <th class="participant_name vertical-align-middle">
+                                    {{ the_plan.participants[num_participant].name }}
+                                </th>
 
-								{% for num_availability in range_availability %}
-								<td class="vertical-align-middle availability_{{num_availability}}">
-									{{
-                  the_plan.participants[num_participant].availabilities[num_availability]
-                  }}
-								</td>
-								{% endfor %}
-								<td class="vertical-align-middle">
-									{{ the_plan.participants[num_participant].participant_note }}
-								</td>
+                                {% for num_availability in range_availability %}
+                                <td class="vertical-align-middle availability_{{num_availability}}">
+                                    {{ the_plan.participants[num_participant].availabilities[num_availability] }}
+                                </td>
+                                {% endfor %}
+                                <td class="vertical-align-middle">
+                                    {{ the_plan.participants[num_participant].participant_note }}
+                                </td>
 
-								<td class="vertical-align-middle">
-									<div class="participant_schedule_button button_edit">
-										Edit
-									</div>
-								</td>
-								<td></td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="text-center">
-			<p class="participant_add">+ Add your availability</p>
-		</div>
-		<div class="text-center">
-			<input
-        type="submit"
-        class="participant_submit_button"
-        form="form1"
-        value="Submit"
-      />
+                                <td class="vertical-align-middle">
+                                    <div class="participant_schedule_button button_edit">
+                                        Edit
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <p class="participant_add">+ Add your availability</p>
+        </div>
+        <div class="text-center">
+            <input type="submit" class="participant_submit_button" form="form1" value="Submit" />
+        </div>
     </div>
-		</div>
-	</div>
+</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalCenterTitle">
-						Are you sure to delete it?
-					</h5>
-					<button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-				</div>
-				<div class="modal-body">
-					The data you delete cannot be recovered.
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="button_cancel" data-dismiss="modal">
-          Close
-        </button>
-					<input
-          type="submit"
-          class="participant_delete_from_DB"
-          form="form3"
-          value="Delete"
-        />
-      </div>
-				</div>
-			</div>
-		</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">
+                    Are you sure to delete it?
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                The data you delete cannot be recovered.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button_cancel" data-dismiss="modal">
+                    Close
+                </button>
+                <input type="submit" class="participant_delete_from_DB" form="form3" value="Delete" />
+            </div>
+        </div>
+    </div>
+</div>
 
-		{% endblock %}
+{% endblock %}

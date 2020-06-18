@@ -1,96 +1,78 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="masthead">
-  <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-md-5 my-auto">
-        <h1>Easy way to schedule in this complicated world.</h1>
-        <h3>Create a shareable link to schedule an event.</h3>
-        <div class="text-center">
-        <div class="button_margin_top">
-          <a href="{{url_for('check_event_key')}}" class="button_submit">
-              Get started
-          </a>
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-md-5 my-auto">
+                <h1>Easy way to schedule in this complicated world.</h1>
+                <h3>Create a shareable link to schedule an event.</h3>
+                <div class="text-center">
+                    <div class="button_margin_top">
+                        <a href="{{url_for('check_event_key')}}" class="button_submit">
+                            Get started
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <img class="main_image top_image" src="{{url_for('static', filename='/img/' + 'main_1.jpg')}}" alt="main image" />
+            </div>
         </div>
-        </div>
-      </div>
-      <div class="col-md-7">
-        <img
-          class="main_image top_image"
-          src="{{url_for('static', filename='/img/' + 'main_1.jpg')}}"
-          alt="main image"
-        />
-      </div>
     </div>
-  </div>
 </div>
 <section class="how_it_works" id="how_it_works">
-  <div class="container">
-    <div class="text-center how_it_works_logo">
-      <h2>How it works</h2>
-    </div>
+    <div class="container">
+        <div class="text-center how_it_works_logo">
+            <h2>How it works</h2>
+        </div>
 
-    <div class="row mb-5 step_container">
-      <div class="col-md-6 text-md-right">
-        <img
-          class="main_image"
-          src="{{url_for('static', filename='/img/' + 'main_2.jpg')}}"
-          alt="main image"
-        />
-      </div>
-      <div class="col-md-6 my-auto text-center text-md-left step_text_left">
-        <h3>1. Enter your name and set up your event.</h3>
-        <h5>No registration required. One click creates your event page.</h5>
-      </div>
-    </div>
+        <div class="row mb-5 step_container">
+            <div class="col-md-6 text-md-right">
+                <img class="main_image" src="{{url_for('static', filename='/img/' + 'main_2.jpg')}}" alt="main image" />
+            </div>
+            <div class="col-md-6 my-auto text-center text-md-left step_text_left">
+                <h3>1. Enter your name and set up your event.</h3>
+                <h5>No registration required. One click creates your event page.</h5>
+            </div>
+        </div>
 
-    <div class="row my-5 step_container">
-      <div class="col-md-6 my-auto text-center text-md-right step_text_right">
-        <h3>2. Suggest some times.</h3>
-        <h5>
-          You can suggest multiple dates so everyone can set their
-          availability.
-        </h5>
-      </div>
-      <div class="col-md-6 text-md-left">
-        <img
-          class="main_image"
-          src="{{url_for('static', filename='/img/' + 'main_3.jpg')}}"
-          alt="main image"
-        />
-      </div>
+        <div class="row my-5 step_container">
+            <div class="col-md-6 my-auto text-center text-md-right step_text_right">
+                <h3>2. Suggest some times.</h3>
+                <h5>
+                    You can suggest multiple dates so everyone can set their availability.
+                </h5>
+            </div>
+            <div class="col-md-6 text-md-left">
+                <img class="main_image" src="{{url_for('static', filename='/img/' + 'main_3.jpg')}}" alt="main image" />
+            </div>
+        </div>
+        <div class="row my-5 step_container">
+            <div class="col-md-6 text-md-right">
+                <img class="main_image" src="{{url_for('static', filename='/img/' + 'main_4.jpg')}}" alt="main image" />
+            </div>
+            <div class="col-md-6 my-auto text-center text-md-left step_text_left">
+                <h3>3. Share your event!</h3>
+                <h5>
+                    Simply share the event URL with your friends so you can start planning together.
+                </h5>
+            </div>
+        </div>
     </div>
-    <div class="row my-5 step_container">
-      <div class="col-md-6 text-md-right">
-        <img
-          class="main_image"
-          src="{{url_for('static', filename='/img/' + 'main_4.jpg')}}"
-          alt="main image"
-        />
-      </div>
-      <div class="col-md-6 my-auto text-center text-md-left step_text_left">
-        <h3>3. Share your event!</h3>
-        <h5>
-          Simply share the event URL with your friends so you can start planning
-          together.
-        </h5>
-      </div>
-    </div>
-  </div>
 </section>
 <section class="main_last">
-  <div class="container">
-    <div class="text-center main_last_text">
-      <h2 class="restore_plan_">Get started on your new plan now!</h2>
-      <div class="d-flex justify-content-center">
-        <div class="text-center button_margin_top">
-          <a href="{{url_for('check_event_key')}}" class="button_submit">
-              Get started
-          </a>
+    <div class="container">
+        <div class="text-center main_last_text">
+            <h2 class="restore_plan_">Get started on your new plan now!</h2>
+            <div class="d-flex justify-content-center">
+                <div class="text-center button_margin_top">
+                    <a href="{{url_for('check_event_key')}}" class="button_submit">
+                        Get started
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 {% endblock %}

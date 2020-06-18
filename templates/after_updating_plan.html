@@ -1,16 +1,16 @@
 {% extends 'base.html' %} {% block content %}
 <div class="plan_body vertical-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="text-center after_creating_text">Your schedule is recorded.</h1>
-				<div class="text-center">
-					<a href="{{url_for('update_plan_participants', plan_id=plan_id)}}" class="button_submit">
-						Check updated schedule
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="text-center after_creating_text">Your schedule is recorded.</h1>
+                <div class="text-center">
+                    <a href="{{url_for('update_plan_participants', plan_id=plan_id)}}" class="button_submit">
+                        Check updated schedule
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

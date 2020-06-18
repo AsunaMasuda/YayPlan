@@ -1,154 +1,90 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="plan_body">
-  <div class="container">
-    <div class="row">
-      <div class="col-md">
-        <h2 class="text-center title_create_new_plan">
-          Change your plan.
-        </h2>
-        <form
-          action="{{ url_for('edit_details', plan_id = plan_id) }}"
-          method="POST"
-          class="needs-validation"
-          novalidate
-        >
-          <div class="contact-form">
-            <div class="form-row row-form-adjust">
-              <span class="col-sm-4"
-                ><i class="fas fa-user-alt icon_creat_plan"></i
-                >&nbsp;&nbsp;Organizer's Name</span
-              >
-              <span class="col-sm-8"
-                ><input
-                  type="text"
-                  class="form-control form-valid"
-                  name="organizer_name"
-                  value="{{the_plan.organizer_name}}"
-                  aria-invalid="false"
-                  required
-                  readonly
-                />
-                <span class="invalid-feedback">
-                  Please input organizer's name.
-                </span></span
-              >
-            </div>
-            <div class="form-row row-form-adjust">
-              <span class="col-sm-4"
-                ><i class="fas fa-chess-queen icon_creat_plan"></i
-                >&nbsp;&nbsp;Event Name</span
-              >
-              <span class="col-sm-8"
-                ><input
-                  type="text"
-                  class="form-control form-valid"
-                  name="event_name"
-                  aria-invalid="false"
-                  value="{{the_plan.event_name}}"
-                  required
-                />
-                <span class="invalid-feedback">
-                  Please input organizer's name.
-                </span></span
-              >
-            </div>
-            <div class="form-row row-form-adjust">
-              <span class="col-sm-4"
-                ><i class="fas fa-info-circle icon_creat_plan"></i
-                >&nbsp;&nbsp;Event Description</span
-              >
-              <span class="col-sm-8">
-                <textarea
-                  class="form-control form-valid"
-                  rows="5"
-                  name="event_description"
-                  required
-                >
-{{the_plan.event_description}}</textarea
-                >
-                <span class="invalid-feedback">
-                  Please input an event description.
-                </span>
-              </span>
-            </div>
-            <div class="form-row row-form-adjust container_avail">
-              <div class="col-sm-4">
-                <i class="far fa-calendar-alt icon_creat_plan"></i
-                >&nbsp;&nbsp;Date
-              </div>
-              <div class="col-sm-8">
-                {% if range_availability is defined %} {% for avail in
-                range_availability %}
-                <div class="element_avail" id="addavail_{{avail}}">
-                  <div class="row">
-                    <div class="col-sm-9">
-                      <input
-                        type="hidden"
-                        class="form-control avail_picker form-valid flatpickr-input"
-                        name="availability_{{avail}}"
-                        value="{{ the_plan.availabilities[avail] }}"
-                      />
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h2 class="text-center title_create_new_plan">
+                    Change your plan.
+                </h2>
+                <form action="{{ url_for('edit_details', plan_id = plan_id) }}" method="POST" class="needs-validation" novalidate>
+                    <div class="contact-form">
+                        <div class="form-row row-form-adjust">
+                            <span class="col-sm-4"><i class="fas fa-user-alt icon_creat_plan"></i>&nbsp;&nbsp;Organizer's Name</span>
+                            <span class="col-sm-8">
+                                <input type="text" class="form-control form-valid" name="organizer_name" value="{{the_plan.organizer_name}}" aria-invalid="false" required readonly />
+                                <span class="invalid-feedback">
+                                    Please input organizer's name.
+                                </span>
+                            </span>
+                        </div>
+                        <div class="form-row row-form-adjust">
+                            <span class="col-sm-4"><i class="fas fa-chess-queen icon_creat_plan"></i>&nbsp;&nbsp;Event Name</span>
+                            <span class="col-sm-8">
+                                <input type="text" class="form-control form-valid" name="event_name" aria-invalid="false" value="{{the_plan.event_name}}" required />
+                                <span class="invalid-feedback">
+                                    Please input organizer's name.
+                                </span>
+                            </span>
+                        </div>
+                        <div class="form-row row-form-adjust">
+                            <span class="col-sm-4"><i class="fas fa-info-circle icon_creat_plan"></i>&nbsp;&nbsp;Event Description</span>
+                            <span class="col-sm-8">
+                                <textarea class="form-control form-valid" rows="5" name="event_description" required>{{the_plan.event_description}}</textarea>
+                                <span class="invalid-feedback">
+                                    Please input an event description.
+                                </span>
+                            </span>
+                        </div>
+                        <div class="form-row row-form-adjust container_avail">
+                            <div class="col-sm-4"><i class="far fa-calendar-alt icon_creat_plan"></i>&nbsp;&nbsp;Date</div>
+                            <div class="col-sm-8">
+                                {% if range_availability is defined %} {% for avail in range_availability %}
+                                <div class="element_avail" id="addavail_{{avail}}">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <input type="hidden" class="form-control avail_picker form-valid flatpickr-input" name="availability_{{avail}}" value="{{ the_plan.availabilities[avail] }}" />
+                                        </div>
+                                        <div class="col-sm-3 my-auto">
+                                            <span id="removeavail_{{ avail }}" class="remove_avail_button">Remove</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %} {% else %}
+                                <div class="element_avail" id="addavail_0">
+                                    <input type="text" class="form-control avail_picker form-valid" name="availability_0" required />
+                                </div>
+                                {% endif %}
+                                <span class="invalid-feedback">
+                                    Please input an availability.
+                                </span>
+                            </div>
+                            <div class="col-sm-12">
+                                <p class="text-right add_more" id="addavail_button">
+                                    + Add more availabilities
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-row row-form-adjust container_place">
+                            <div class="col-sm-4"><i class="fas fa-map-marker-alt icon_creat_plan"></i>&nbsp;&nbsp;Places</div>
+                            <div class="col-sm-8">
+                                <div class="element_place" id="addplaces_1">
+                                    <input type="text" class="form-control event_place form-valid" name="event_place" aria-invalid="false" value="{{ the_plan.event_place }}" required />
+                                    <span class="invalid-feedback">
+                                        Please input a place.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-3 my-auto">
-                      <span
-                        id="removeavail_{{ avail }}"
-                        class="remove_avail_button"
-                        >Remove</span
-                      >
+                    <div class="row d-flex justify-content-center">
+                        <div>
+                            <input type="submit" class="button_create" value="Update" />
+                        </div>
                     </div>
-                  </div>
-                </div>
-                {% endfor %} {% else %}
-                <div class="element_avail" id="addavail_0">
-                  <input
-                    type="text"
-                    class="form-control avail_picker form-valid"
-                    name="availability_0"
-                    required
-                  />
-                </div>
-                {% endif %}
-                <span class="invalid-feedback">
-                  Please input an availability.
-                </span>
-              </div>
-              <div class="col-sm-12">
-                <p class="text-right add_more" id="addavail_button">
-                  + Add more availabilities
-                </p>
-              </div>
+                </form>
             </div>
-            <div class="form-row row-form-adjust container_place">
-              <div class="col-sm-4">
-                <i class="fas fa-map-marker-alt icon_creat_plan"></i
-                >&nbsp;&nbsp;Places
-              </div>
-              <div class="col-sm-8">
-                <div class="element_place" id="addplaces_1">
-                  <input
-                    type="text"
-                    class="form-control event_place form-valid"
-                    name="event_place"
-                    aria-invalid="false"
-                    value="{{ the_plan.event_place }}"
-                    required
-                  />
-                  <span class="invalid-feedback">
-                    Please input a place.
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row d-flex justify-content-center">
-            <div>
-              <input type="submit" class="button_create" value="Update" />
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
 ‰ {% endblock %}
