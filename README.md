@@ -131,7 +131,7 @@ The following is the data structure.
                    { 
         name: String,
         availabilities: Array,
-        participant note: String
+        participant_note: String
      }
 }
 ```
@@ -182,7 +182,7 @@ Testing was done throughout the application being built. This application is bui
 # Deployment
 ## Local Deployment
 For local deployment, you need to have an IDE such as Gitpod and you need to install the following in your IDE:
-- Git, Python3, PIP3, MongoDB
+- Git, Python3, PIP3
 
 1. At the top of this repository, click the green button **Clone or download**.
 2. In the Clone with HTTPs section, copy the clone URL for the repository. 
