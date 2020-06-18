@@ -166,6 +166,12 @@ I used these validation tools below for each file.
 - JavaScript: [JSHint](https://jshint.com/)
 - Python: [PEP8 online](http://pep8online.com/)
 
+### Formatter
+- HTML: [HTML Formatter](https://webformatter.com/html)
+- CSS: [CSS Formatter](https://webformatter.com/css)
+- JavaScript: [Online JavaScript Beautifier](https://beautifier.io/)
+- Python:[PEP8 online](http://pep8online.com/)
+
 ### Manual Testing
 Testing was done throughout the application being built. This application is built with a mobile first responsive design in mind. I created [this testing matrix](https://github.com/AsunaMasuda/MilestoneProject3/blob/master/image_README/test_result.png) to make sure the site works as expected in different devices with the emuration funtion in Google Developer Tool, browsers and screen sizes.
 
@@ -237,6 +243,7 @@ SECRET_KEY | `<your_secret_key>`
 
 ### Images
 - The images used in the home page are created by [pikisuperstar - www.freepik.com](https://www.freepik.com/free-photos-vectors/people).
+- The favicon for this site is provided by [flaticon](https://www.flaticon.com/)
 
 ### UX
 - I used this article as reference when deciding the color scheme. [7 Tips To Organize Colors for UI Design](https://uxplanet.org/7-tips-to-organize-colors-for-ui-design-97bbefed8a8a)
