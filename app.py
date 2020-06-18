@@ -122,7 +122,7 @@ def update_plan_participants(plan_id):
     the_plan = mongo.db.plans.find_one({"_id": ObjectId(plan_id)})
     range_availability = range(0, len(the_plan['availabilities']))
     if len(the_plan['participants']) == 0:
-        range_participant = 0
+        range_participant = range(0, 0)
     else:
         range_participant = range(0, len(the_plan['participants']))
     return render_template('update_plan_participants.html',
