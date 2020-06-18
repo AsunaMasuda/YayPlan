@@ -41,6 +41,13 @@ def check_database():
     creates a new collection.
     If it's not available, it returns a message to let users suggest
     a different key.
+
+    @type plan_id: str
+    @param plan_id: id created for the MongoDB collection
+    @type organizer_name: str
+    @param organizer_name: Organizer's name for the event
+    @type event_key: str
+    @param event_key: A key which is used to access the data
     """
     organizer_name = request.form["organizer_name"]
     event_key = request.form["event_key"]
@@ -49,20 +56,27 @@ def check_database():
          "event_key": event_key}))
     if count_user > 0:
         not_available_word = "This event key is not available with the "\
-                            "organizer name. Please use a different event key."
+            "organizer name. Please use a different event key."
         return render_template('check_event_key.html',
                                not_available_word=not_available_word,
                                organizer_name=organizer_name,
                                event_key=event_key)
     else:
         plans = mongo.db.plans
-        plans.insert_one(request.form.to_dict())
+        inserted_plan = plans.insert_one(request.form.to_dict())
+        plan_id = inserted_plan.inserted_id
+        plans.update({'_id': plan_id},
+                     {'$set':
+                      {'event_name': '',
+                       'event_description': '',
+                       'availabilities': [],
+                       'event_place': '',
+                       'participants': []
+                       }})
         organizer_name = request.form["organizer_name"]
-        plan_id = plans.find({"organizer_name": organizer_name}).sort(
-            "_id", -1)[0]["_id"]
         return redirect(url_for('create_new_plan',
-                        organizer_name=organizer_name,
-                        plan_id=plan_id))
+                                organizer_name=organizer_name,
+                                plan_id=plan_id))
 
 
 @app.route('/create_new_plan/<organizer_name>/<plan_id>')
@@ -82,22 +96,19 @@ def update_details(plan_id):
     This function adds the details of the event to the collection.
     """
     f = request.form
+    keys = f.keys()
+    list_form = [ava_f for ava_f in keys if "availability_" in ava_f]
     list_avail = []
-    for i in range(0, 15):
-        each_availability = "availability_" + str(i)
-        if each_availability in f.keys():
-            list_avail.append(request.form[each_availability])
-        else:
-            continue
-    plans = mongo.db.plans
-    plans.update({'_id': ObjectId(plan_id)},
-                 {'$set': {
-                     'event_name': request.form["event_name"],
-                     'event_description': request.form["event_description"],
-                     'availabilities': list_avail,
-                     'event_place': request.form["event_place"],
-                     'participants': []
-                 }})
+    for each_availability in list_form:
+        list_avail.append(f[each_availability])
+    mongo.db.plans.update({'_id': ObjectId(plan_id)},
+                          {'$set':
+                           {'event_name': f["event_name"],
+                            'event_description': f["event_description"],
+                            'availabilities': list_avail,
+                            'event_place': f["event_place"],
+                            'participants': []
+                            }})
     return render_template('after_creating_plan.html', plan_id=plan_id)
 
 
@@ -128,35 +139,26 @@ def update_plan_complete(plan_id):
     collection of the event.
     This handles submittions by multiple participants at the same time.
     """
+    the_plan = mongo.db.plans.find_one({"_id": ObjectId(plan_id)})
     f = request.form
-    i = 0
-    while i < 50:
-        i = i + 1
-        each_participant = "participant_" + str(i)
-        if each_participant in f.keys():
-            name_participant = request.form[each_participant]
-            dict_avail = []
-            for n in range(1, 6):
-                participant_each_availability = "participant_" + \
-                    str(i) + "_availability_" + str(n)
-                if participant_each_availability in f.keys():
-                    dict_avail.append(
-                        request.form[participant_each_availability])
-                else:
-                    break
-            the_plan = mongo.db.plans
-            the_plan.update({'_id': ObjectId(plan_id)},
-                            {'$push': {
-                                "participants": {
-                                    'name': name_participant,
-                                    'availabilities': dict_avail,
-                                    'participant_note':
-                                        request.form["participant_note"]
-                                }}
-                             })
-        else:
-            continue
-
+    keys = f.keys()
+    list_participant = [part_f for part_f in keys if "participant_" in part_f]
+    for each_participant in list_participant:
+        name_participant = f[each_participant]
+        num = str(each_participant).split('_')[1]
+        list_avail = []
+        for n in range(1, (len(the_plan['availabilities'])) + 1):
+            participant_each_availability = "part_" + num + "_avail_" + str(n)
+            list_avail.append(f[participant_each_availability])
+        mongo.db.plans.update({'_id': ObjectId(plan_id)},
+                              {'$push': {
+                                  "participants": {
+                                      'name': name_participant,
+                                      'availabilities': list_avail,
+                                      'participant_note':
+                                      f["part_note"]
+                                  }}
+                               })
     return render_template('after_updating_plan.html', plan_id=plan_id)
 
 
@@ -238,23 +240,20 @@ def edit_details(plan_id):
     The function updates event details from restore page.
     """
     f = request.form
+    keys = f.keys()
+    list_form = [ava_f for ava_f in keys if "availability_" in ava_f]
     list_avail = []
-    for i in range(0, 15):
-        each_availability = "availability_" + str(i)
-        if each_availability in f.keys():
-            list_avail.append(request.form[each_availability])
-        else:
-            continue
+    for each_availability in list_form:
+        list_avail.append(f[each_availability])
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
-    plans = mongo.db.plans
-    plans.update({'_id': ObjectId(plan_id)},
-                 {'$set': {
-                     'event_name': request.form["event_name"],
-                     'event_description': request.form["event_description"],
-                     'availabilities': list_avail,
-                     'event_place': request.form["event_place"],
-                     'participants': the_plan['participants']
-                 }})
+    mongo.db.plans.update({'_id': ObjectId(plan_id)},
+                          {'$set': {
+                              'event_name': f["event_name"],
+                              'event_description': f["event_description"],
+                              'availabilities': list_avail,
+                              'event_place': f["event_place"],
+                              'participants': the_plan['participants']
+                          }})
     return render_template('after_creating_plan.html', plan_id=plan_id)
 
 
@@ -265,26 +264,26 @@ def edit_yourplan(plan_id):
     event from restore page.
     """
     f = request.form
+    keys = f.keys()
     the_plan = mongo.db.plans.find_one({'_id': ObjectId(plan_id)})
     i = 0
     while i < len(the_plan['participants']):
-        if request.form['edit_name'] == the_plan['participants'][i]['name']:
-            dict_avail_edit = []
-            for n in range(1, 6):
+        if f['edit_name'] == the_plan['participants'][i]['name']:
+            list_avail_edit = []
+            for n in range(1, len(the_plan['availabilities'])+1):
                 each_availability = "availability_" + str(n)
-                if each_availability in f.keys():
-                    dict_avail_edit.append(request.form[each_availability])
+                if each_availability in keys:
+                    list_avail_edit.append(f[each_availability])
                 else:
                     break
             updating_participant_DB = "participants." + str(i)
-
             mongo.db.plans.update(
                 {'_id': ObjectId(plan_id)},
                 {'$set': {
                     updating_participant_DB: {
-                        'name': request.form['edit_name'],
-                        'availabilities': dict_avail_edit,
-                        'participant_note': request.form["participant_note"]
+                        'name': f['edit_name'],
+                        'availabilities': list_avail_edit,
+                        'participant_note': f["part_note"]
                     }}})
             i = i + 1
         else:
@@ -306,7 +305,7 @@ def see_plan_from_restore(plan_id):
                                 plan_id=plan_id))
     else:
         suggestion_word = "The plan is not set yet. Please go to 'Change Your"\
-                          " Plan' link on the left."
+                          " Plan' link and complete your event details."
         return render_template('restored_data.html',
                                plan_id=plan_id,
                                organizer_name=organizer_name,
@@ -326,4 +325,4 @@ def delete_plan(plan_id):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=False)
+            debug=True)
