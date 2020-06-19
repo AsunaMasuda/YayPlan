@@ -7,7 +7,6 @@ if os.path.exists("env.py"):
 
 # creates an instance of flask and assign it to the app variable
 app = Flask(__name__)
-app.config.update(dict(PREFERRED_URL_SCHEME='https'))
 
 # Environment variables
 app.config["MONGO_DBNAME"] = 'myPlanner'
@@ -76,6 +75,7 @@ def check_database():
                        }})
         organizer_name = request.form["organizer_name"]
         return redirect(url_for('create_new_plan',
+                                _scheme='https',
                                 organizer_name=organizer_name,
                                 plan_id=plan_id))
 
@@ -303,6 +303,7 @@ def see_plan_from_restore(plan_id):
     event_key = the_plan['event_key']
     if len(the_plan['availabilities']) > 0:
         return redirect(url_for('update_plan_participants',
+                                _scheme='https',
                                 plan_id=plan_id))
     else:
         suggestion_word = "The plan is not set yet. Please go to 'Change Your"\
