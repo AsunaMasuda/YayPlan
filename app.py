@@ -7,6 +7,7 @@ if os.path.exists("env.py"):
 
 # creates an instance of flask and assign it to the app variable
 app = Flask(__name__)
+app.config.update(dict(PREFERRED_URL_SCHEME='https'))
 
 # Environment variables
 app.config["MONGO_DBNAME"] = 'myPlanner'
@@ -206,7 +207,7 @@ def restore_data():
                                organizer_name=organizer_name,
                                event_key=event_key)
     else:
-        not_found_message = "Either the name or the event key is wrong."\
+        not_found_message = "Data not found with the the name and the event."\
                             " Please try it again."
         return render_template('restore_plan.html',
                                not_found_message=not_found_message,
