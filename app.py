@@ -76,6 +76,7 @@ def check_database():
         organizer_name = request.form["organizer_name"]
         return redirect(url_for('create_new_plan',
                                 _scheme='https',
+                                _external=True,
                                 organizer_name=organizer_name,
                                 plan_id=plan_id))
 
@@ -304,6 +305,7 @@ def see_plan_from_restore(plan_id):
     if len(the_plan['availabilities']) > 0:
         return redirect(url_for('update_plan_participants',
                                 _scheme='https',
+                                _external=True,
                                 plan_id=plan_id))
     else:
         suggestion_word = "The plan is not set yet. Please go to 'Change Your"\
